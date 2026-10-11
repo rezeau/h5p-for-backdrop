@@ -1,0 +1,1834 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-10-11",
+  "selectionStatus": "Pinned source candidates; Backdrop integration qualification is a Phase 2 gate.",
+  "hashAlgorithm": "Git blob SHA-1: SHA1('blob '+byteLength+'\\0'+rawBytes)",
+  "core": {
+    "repository": "https://github.com/h5p/h5p-php-library",
+    "tag": "1.28.0",
+    "tagObject": "e733dc9496382bd933a3e2205ce2702a7e02876c",
+    "commit": "2aeb0b83fa603e331381b3a6b8bf42c3773ba140",
+    "api": {
+      "majorVersion": 1,
+      "minorVersion": 28
+    },
+    "phpRequirement": ">=7.0.0",
+    "targetRoot": "library/",
+    "files": [
+      {
+        "path": ".gitignore",
+        "targetPath": "library/.gitignore",
+        "gitBlob": "1a4fcf408512319433e16802bc876ed21ae8f50e",
+        "bytes": 26
+      },
+      {
+        "path": ".travis.yml",
+        "targetPath": "library/.travis.yml",
+        "gitBlob": "1f8312a34ec8ed4bdc4d0276011f81389d7562be",
+        "bytes": 1188
+      },
+      {
+        "path": "LICENSE.txt",
+        "targetPath": "library/LICENSE.txt",
+        "gitBlob": "20d40b6bceca3a6c0237d7455ebf1820aeff3680",
+        "bytes": 35146
+      },
+      {
+        "path": "README.txt",
+        "targetPath": "library/README.txt",
+        "gitBlob": "22cf79866c2e4ef7aec1ee0b25c79cd643ecea06",
+        "bytes": 796
+      },
+      {
+        "path": "composer.json",
+        "targetPath": "library/composer.json",
+        "gitBlob": "84bd849a5c4bf5cf9adb5240b88529f51fee5f97",
+        "bytes": 948
+      },
+      {
+        "path": "doc/spec_en.html",
+        "targetPath": "library/doc/spec_en.html",
+        "gitBlob": "de6ddf077ae0f213a61ff60385f1ce74515ac3f5",
+        "bytes": 13390
+      },
+      {
+        "path": "embed.php",
+        "targetPath": "library/embed.php",
+        "gitBlob": "0394e668fec42824c2a0654e6b058457aabda48c",
+        "bytes": 902
+      },
+      {
+        "path": "fonts/h5p-core-30.woff2",
+        "targetPath": "library/fonts/h5p-core-30.woff2",
+        "gitBlob": "4e82ff90a570f2761a1291b72beb08c8faa18114",
+        "bytes": 15080
+      },
+      {
+        "path": "fonts/h5p-hub-publish.woff2",
+        "targetPath": "library/fonts/h5p-hub-publish.woff2",
+        "gitBlob": "4784da256afde051e46d143e42df37c219a22a5f",
+        "bytes": 1384
+      },
+      {
+        "path": "fonts/h5p-theme.woff2",
+        "targetPath": "library/fonts/h5p-theme.woff2",
+        "gitBlob": "a1134c7cf8e1c5e8a09c144f6530536538b399da",
+        "bytes": 10244
+      },
+      {
+        "path": "fonts/inter/Inter-ExtraBold.woff2",
+        "targetPath": "library/fonts/inter/Inter-ExtraBold.woff2",
+        "gitBlob": "bbd0006988e2e5d462d7317948df0dd503b90173",
+        "bytes": 114856
+      },
+      {
+        "path": "fonts/inter/Inter-ExtraBoldItalic.woff2",
+        "targetPath": "library/fonts/inter/Inter-ExtraBoldItalic.woff2",
+        "gitBlob": "288f2de2a40187c0d15325349887b159a56098bd",
+        "bytes": 121516
+      },
+      {
+        "path": "fonts/inter/LICENSE.txt",
+        "targetPath": "library/fonts/inter/LICENSE.txt",
+        "gitBlob": "9b2ca37b3ffc77391d8b2ebef4a974ef32bf46ea",
+        "bytes": 4380
+      },
+      {
+        "path": "fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600.woff2",
+        "targetPath": "library/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600.woff2",
+        "gitBlob": "61fd56514af3e1023e8f26cb871e56371c85dd6f",
+        "bytes": 112048
+      },
+      {
+        "path": "fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600italic.woff2",
+        "targetPath": "library/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600italic.woff2",
+        "gitBlob": "815df386bfb9287a64e880d8bb0260487cfa14b8",
+        "bytes": 118096
+      },
+      {
+        "path": "fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-italic.woff2",
+        "targetPath": "library/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-italic.woff2",
+        "gitBlob": "d0db85b60d07d95050ddd424e0bfecba4c69d53e",
+        "bytes": 114132
+      },
+      {
+        "path": "fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-regular.woff2",
+        "targetPath": "library/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-regular.woff2",
+        "gitBlob": "daee27695e25950265136448fac11e8a524aff19",
+        "bytes": 108656
+      },
+      {
+        "path": "fonts/open-sans/OFL.txt",
+        "targetPath": "library/fonts/open-sans/OFL.txt",
+        "gitBlob": "2e76eefd4e73002a3d0fbeafb8ac7e833293042a",
+        "bytes": 4216
+      },
+      {
+        "path": "fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600.woff2",
+        "targetPath": "library/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600.woff2",
+        "gitBlob": "2d1a4e9536f5d15c166e30de97f8b83606c9ca96",
+        "bytes": 56200
+      },
+      {
+        "path": "fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600italic.woff2",
+        "targetPath": "library/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600italic.woff2",
+        "gitBlob": "818183a20d7f70b71e31651e76c1ee95b2341304",
+        "bytes": 59372
+      },
+      {
+        "path": "fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700.woff2",
+        "targetPath": "library/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700.woff2",
+        "gitBlob": "991d0e20cba4ad6b9311c98abc814e7dc1f6d6d3",
+        "bytes": 54424
+      },
+      {
+        "path": "fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700italic.woff2",
+        "targetPath": "library/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700italic.woff2",
+        "gitBlob": "24ac820106a56fa2309e7068be7d81555903306a",
+        "bytes": 56748
+      },
+      {
+        "path": "fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-italic.woff2",
+        "targetPath": "library/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-italic.woff2",
+        "gitBlob": "975afeec014f76c29b77489b9e2e0aeb3804315e",
+        "bytes": 59328
+      },
+      {
+        "path": "fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-regular.woff2",
+        "targetPath": "library/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-regular.woff2",
+        "gitBlob": "3058433f695d08be13d17b29009616274fbf8133",
+        "bytes": 56272
+      },
+      {
+        "path": "h5p-default-storage.class.php",
+        "targetPath": "library/h5p-default-storage.class.php",
+        "gitBlob": "c2fc826b73ed68cf2ad3b6c21231eddf6e4607ca",
+        "bytes": 16096
+      },
+      {
+        "path": "h5p-development.class.php",
+        "targetPath": "library/h5p-development.class.php",
+        "gitBlob": "c2244025b25a161465b08f9f453ef91482f852e3",
+        "bytes": 6229
+      },
+      {
+        "path": "h5p-event-base.class.php",
+        "targetPath": "library/h5p-event-base.class.php",
+        "gitBlob": "454ea50de688e52292d8f8ddeea43619a6ee88a1",
+        "bytes": 5706
+      },
+      {
+        "path": "h5p-file-storage.interface.php",
+        "targetPath": "library/h5p-file-storage.interface.php",
+        "gitBlob": "74565d40e17d038e1c5a7c820b5c4de27ec6aa16",
+        "bytes": 5345
+      },
+      {
+        "path": "h5p-metadata.class.php",
+        "targetPath": "library/h5p-metadata.class.php",
+        "gitBlob": "5b045aaf46f60dc4ef3edb4eb590218e5299ff4d",
+        "bytes": 4812
+      },
+      {
+        "path": "h5p.classes.php",
+        "targetPath": "library/h5p.classes.php",
+        "gitBlob": "650364157fc5fa574f358394d6f2e862384c9302",
+        "bytes": 196915
+      },
+      {
+        "path": "images/h5p.svg",
+        "targetPath": "library/images/h5p.svg",
+        "gitBlob": "07191aa8b2a5ae7a45aa9b3dec44870567f63b9f",
+        "bytes": 1261
+      },
+      {
+        "path": "images/throbber.gif",
+        "targetPath": "library/images/throbber.gif",
+        "gitBlob": "acddb91dacf5380214216e7ff2e063f6e5e60d5f",
+        "bytes": 1638
+      },
+      {
+        "path": "js/h5p-action-bar.js",
+        "targetPath": "library/js/h5p-action-bar.js",
+        "gitBlob": "88cb84825fbc87575b42f5783a2bc3d5a7523864",
+        "bytes": 2940
+      },
+      {
+        "path": "js/h5p-confirmation-dialog.js",
+        "targetPath": "library/js/h5p-confirmation-dialog.js",
+        "gitBlob": "14b81df7bbd1cce7d5e04a859824a427fcdc6e7b",
+        "bytes": 13317
+      },
+      {
+        "path": "js/h5p-content-type.js",
+        "targetPath": "library/js/h5p-content-type.js",
+        "gitBlob": "47c4d21bf75c0320e8e50cbde2cecf1e852ef560",
+        "bytes": 1289
+      },
+      {
+        "path": "js/h5p-content-upgrade-process.js",
+        "targetPath": "library/js/h5p-content-upgrade-process.js",
+        "gitBlob": "126221e0d08eceda226190407638738c2352cd52",
+        "bytes": 9595
+      },
+      {
+        "path": "js/h5p-content-upgrade-worker.js",
+        "targetPath": "library/js/h5p-content-upgrade-worker.js",
+        "gitBlob": "3507a358a1a377885f04b6c584fbeebc4858b8ce",
+        "bytes": 1510
+      },
+      {
+        "path": "js/h5p-content-upgrade.js",
+        "targetPath": "library/js/h5p-content-upgrade.js",
+        "gitBlob": "9dc066c5c2576dcced28893fd8f3556edaa8c425",
+        "bytes": 11556
+      },
+      {
+        "path": "js/h5p-data-view.js",
+        "targetPath": "library/js/h5p-data-view.js",
+        "gitBlob": "3d628bb9d730ab9e651fbf1aecfe1db6d8cb09e5",
+        "bytes": 12234
+      },
+      {
+        "path": "js/h5p-display-options.js",
+        "targetPath": "library/js/h5p-display-options.js",
+        "gitBlob": "21651527406c9393e098687c5a2cf54a6594ea21",
+        "bytes": 1307
+      },
+      {
+        "path": "js/h5p-embed.js",
+        "targetPath": "library/js/h5p-embed.js",
+        "gitBlob": "c141456705db4d6253cca886e2926d3fb0c6e4e4",
+        "bytes": 1974
+      },
+      {
+        "path": "js/h5p-event-dispatcher.js",
+        "targetPath": "library/js/h5p-event-dispatcher.js",
+        "gitBlob": "2027cf7ac58aaa3289d80813c24ba6fc921d26a8",
+        "bytes": 6442
+      },
+      {
+        "path": "js/h5p-hub-registration.js",
+        "targetPath": "library/js/h5p-hub-registration.js",
+        "gitBlob": "fa329186f1430f1ba4397d9c3236cb3d40dbdc44",
+        "bytes": 165605
+      },
+      {
+        "path": "js/h5p-hub-sharing.js",
+        "targetPath": "library/js/h5p-hub-sharing.js",
+        "gitBlob": "6526ac2c4d25667e6518f7d96b4bce3249b6e354",
+        "bytes": 240983
+      },
+      {
+        "path": "js/h5p-library-details.js",
+        "targetPath": "library/js/h5p-library-details.js",
+        "gitBlob": "b5ee0123278303f10904857defc2e2933e7d1640",
+        "bytes": 10956
+      },
+      {
+        "path": "js/h5p-library-list.js",
+        "targetPath": "library/js/h5p-library-list.js",
+        "gitBlob": "344b7367234e8d5939f7d561070d7f601ebd2b67",
+        "bytes": 4323
+      },
+      {
+        "path": "js/h5p-resizer.js",
+        "targetPath": "library/js/h5p-resizer.js",
+        "gitBlob": "ed78724ec1a927f0175d2cbd39536b96c788507b",
+        "bytes": 3654
+      },
+      {
+        "path": "js/h5p-tooltip.js",
+        "targetPath": "library/js/h5p-tooltip.js",
+        "gitBlob": "335dd71d6b17c59e17023a06bd128c81ad7a5054",
+        "bytes": 12431
+      },
+      {
+        "path": "js/h5p-utils.js",
+        "targetPath": "library/js/h5p-utils.js",
+        "gitBlob": "b5aa3334e0e9659e3c154d6a14e86c11b7d7dbf0",
+        "bytes": 12813
+      },
+      {
+        "path": "js/h5p-version.js",
+        "targetPath": "library/js/h5p-version.js",
+        "gitBlob": "8457341d6c64f343a469d4ff5596b8079705d3d6",
+        "bytes": 926
+      },
+      {
+        "path": "js/h5p-x-api-event.js",
+        "targetPath": "library/js/h5p-x-api-event.js",
+        "gitBlob": "a26b58b703df3c4519517586e0f9c01d33fe6e32",
+        "bytes": 8760
+      },
+      {
+        "path": "js/h5p-x-api.js",
+        "targetPath": "library/js/h5p-x-api.js",
+        "gitBlob": "66971cdef78f5b9f144066bf91f58bde76340bdb",
+        "bytes": 3728
+      },
+      {
+        "path": "js/h5p.js",
+        "targetPath": "library/js/h5p.js",
+        "gitBlob": "cb2ef2c2a7c22eff0a4b69ba901c3e15573c72ec",
+        "bytes": 89710
+      },
+      {
+        "path": "js/jquery.js",
+        "targetPath": "library/js/jquery.js",
+        "gitBlob": "4f34d7590ccc8a13a265c8b965d84317d00179c0",
+        "bytes": 90198
+      },
+      {
+        "path": "js/request-queue.js",
+        "targetPath": "library/js/request-queue.js",
+        "gitBlob": "5b367e14777c10696709f3029cfa6c19c641ac5f",
+        "bytes": 11683
+      },
+      {
+        "path": "js/settings/h5p-disable-hub.js",
+        "targetPath": "library/js/settings/h5p-disable-hub.js",
+        "gitBlob": "406e8b2d1e957476b4879c874db680c25dec5aa9",
+        "bytes": 2313
+      },
+      {
+        "path": "styles/h5p-admin.css",
+        "targetPath": "library/styles/h5p-admin.css",
+        "gitBlob": "68306126fc01b6dbd8bb90cf064ebc6d11a2a306",
+        "bytes": 7051
+      },
+      {
+        "path": "styles/h5p-confirmation-dialog.css",
+        "targetPath": "library/styles/h5p-confirmation-dialog.css",
+        "gitBlob": "6e2efa6fd191cc631ef7f0b54b7302eddbd94486",
+        "bytes": 8166
+      },
+      {
+        "path": "styles/h5p-core-button.css",
+        "targetPath": "library/styles/h5p-core-button.css",
+        "gitBlob": "b708729e8b6fa1bff431e63f3cd755ce435e87a9",
+        "bytes": 1897
+      },
+      {
+        "path": "styles/h5p-fonts.css",
+        "targetPath": "library/styles/h5p-fonts.css",
+        "gitBlob": "9fd2ba128b3170c0be61fbe50bcf458af97d08e2",
+        "bytes": 3374
+      },
+      {
+        "path": "styles/h5p-hub-registration.css",
+        "targetPath": "library/styles/h5p-hub-registration.css",
+        "gitBlob": "2972a103a8e2e1e97d614fb38b0a1f01afcac97e",
+        "bytes": 23661
+      },
+      {
+        "path": "styles/h5p-hub-sharing.css",
+        "targetPath": "library/styles/h5p-hub-sharing.css",
+        "gitBlob": "4ec25b4eeb2d15c46e8e7b9edef249e7239fcb0e",
+        "bytes": 38416
+      },
+      {
+        "path": "styles/h5p-table.css",
+        "targetPath": "library/styles/h5p-table.css",
+        "gitBlob": "e781bdce389332b0f323421efd74c4f345cf0360",
+        "bytes": 1058
+      },
+      {
+        "path": "styles/h5p-theme-variables.css",
+        "targetPath": "library/styles/h5p-theme-variables.css",
+        "gitBlob": "9ce6060d5ed2fc57867db42be1e36a1963611ae1",
+        "bytes": 6458
+      },
+      {
+        "path": "styles/h5p-theme.css",
+        "targetPath": "library/styles/h5p-theme.css",
+        "gitBlob": "5aec3365b19455cdc85a7d0e08487499a93efa36",
+        "bytes": 5894
+      },
+      {
+        "path": "styles/h5p-tooltip.css",
+        "targetPath": "library/styles/h5p-tooltip.css",
+        "gitBlob": "e7920081cdce9bd46f63d0648e263bd7d2116e5e",
+        "bytes": 782
+      },
+      {
+        "path": "styles/h5p.css",
+        "targetPath": "library/styles/h5p.css",
+        "gitBlob": "ee798dc1faa08c2e65fb84079466d8df70557939",
+        "bytes": 15647
+      }
+    ],
+    "assetEntryPoints": {
+      "scripts": [
+        "js/jquery.js",
+        "js/h5p.js",
+        "js/h5p-event-dispatcher.js",
+        "js/h5p-x-api-event.js",
+        "js/h5p-x-api.js",
+        "js/h5p-content-type.js",
+        "js/h5p-confirmation-dialog.js",
+        "js/h5p-action-bar.js",
+        "js/request-queue.js",
+        "js/h5p-tooltip.js"
+      ],
+      "styles": [
+        "styles/h5p-fonts.css",
+        "styles/h5p.css",
+        "styles/h5p-confirmation-dialog.css",
+        "styles/h5p-core-button.css",
+        "styles/h5p-theme.css",
+        "styles/h5p-theme-variables.css",
+        "styles/h5p-tooltip.css",
+        "styles/h5p-table.css"
+      ]
+    }
+  },
+  "editor": {
+    "repository": "https://github.com/h5p/h5p-editor-php-library",
+    "tag": "moodle-1.28.2",
+    "tagType": "lightweight",
+    "commit": "73dfed6073b8916faa7e8b1a5fca5adb2bde5dc4",
+    "phpRequirement": ">=7.0.0",
+    "targetRoot": "modules/h5peditor/h5peditor/",
+    "files": [
+      {
+        "path": ".gitignore",
+        "targetPath": "modules/h5peditor/h5peditor/.gitignore",
+        "gitBlob": "0c78047f0eb075adc7a4b63db1bc4b4e39dd4f8c",
+        "bytes": 68
+      },
+      {
+        "path": "README.md",
+        "targetPath": "modules/h5peditor/h5peditor/README.md",
+        "gitBlob": "f7c5c09d20ee1f2049f47a8b90de54e9ba1e54f5",
+        "bytes": 624
+      },
+      {
+        "path": "ckeditor/ckeditor.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/ckeditor.js",
+        "gitBlob": "7bc5a5dcbe220514c527793aef4b4dc730135a8d",
+        "bytes": 1560491
+      },
+      {
+        "path": "ckeditor/ckeditor.js.map",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/ckeditor.js.map",
+        "gitBlob": "d7c5121714c03784d0564a96d1dfb065608a9571",
+        "bytes": 7010179
+      },
+      {
+        "path": "ckeditor/translations/af.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/af.js",
+        "gitBlob": "0afb2ffe3d92bde5cd83d6f52c12824a47b23fb6",
+        "bytes": 8260
+      },
+      {
+        "path": "ckeditor/translations/ar.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ar.js",
+        "gitBlob": "a4e7abd5ac11b0aba01e5fe2b91e8e08b5ffcfad",
+        "bytes": 19209
+      },
+      {
+        "path": "ckeditor/translations/ast.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ast.js",
+        "gitBlob": "9b8ca7c2c146eefbc90c8223b32c273624542f94",
+        "bytes": 8173
+      },
+      {
+        "path": "ckeditor/translations/az.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/az.js",
+        "gitBlob": "6d05c300cb09812be28456d82c30497b3e104d12",
+        "bytes": 10120
+      },
+      {
+        "path": "ckeditor/translations/bg.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/bg.js",
+        "gitBlob": "e1c5f84adb87e7d8dcf2a2e8c0138f6e80e69672",
+        "bytes": 22564
+      },
+      {
+        "path": "ckeditor/translations/bn.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/bn.js",
+        "gitBlob": "a44f062dd314d92f28de2e997d2803810bfcd593",
+        "bytes": 26110
+      },
+      {
+        "path": "ckeditor/translations/bs.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/bs.js",
+        "gitBlob": "9493f20736648434a30e80ae71f9ea62f96e4c6e",
+        "bytes": 8761
+      },
+      {
+        "path": "ckeditor/translations/ca.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ca.js",
+        "gitBlob": "6c86cbb0749e6a18cf4b1b20d49dff69179bb574",
+        "bytes": 15987
+      },
+      {
+        "path": "ckeditor/translations/cs.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/cs.js",
+        "gitBlob": "0594aed1856edd008de2c4c663e9c0858e5653fd",
+        "bytes": 15390
+      },
+      {
+        "path": "ckeditor/translations/da.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/da.js",
+        "gitBlob": "6ccfd28fba34b6093a40c3e68fa2c605b9069d04",
+        "bytes": 14764
+      },
+      {
+        "path": "ckeditor/translations/de-ch.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/de-ch.js",
+        "gitBlob": "3d03578b9925f429c171aa53fe597893c3cd2569",
+        "bytes": 10636
+      },
+      {
+        "path": "ckeditor/translations/de.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/de.js",
+        "gitBlob": "da2f3c4de5edeb5a3abce562bae8a637b6e99aee",
+        "bytes": 15643
+      },
+      {
+        "path": "ckeditor/translations/el.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/el.js",
+        "gitBlob": "2d3a33ca5eba3da1f405d7145d0ae8c66290e796",
+        "bytes": 23720
+      },
+      {
+        "path": "ckeditor/translations/en-au.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/en-au.js",
+        "gitBlob": "5980ae2755dfbf3a4d4dac55c7529891231265b2",
+        "bytes": 11329
+      },
+      {
+        "path": "ckeditor/translations/en-gb.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/en-gb.js",
+        "gitBlob": "79f4f4690d5416b108bd7b37cae19ca2d4b15ce4",
+        "bytes": 9362
+      },
+      {
+        "path": "ckeditor/translations/eo.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/eo.js",
+        "gitBlob": "a3dd02b75cede7a3236ae6c79d4ee123dda3323d",
+        "bytes": 8292
+      },
+      {
+        "path": "ckeditor/translations/es-co.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/es-co.js",
+        "gitBlob": "e905553f6a0a710de4bd7b8785cdbb13ef1a4d11",
+        "bytes": 8784
+      },
+      {
+        "path": "ckeditor/translations/es.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/es.js",
+        "gitBlob": "8639222a8ff8013486765cab89af1a90ce2aa52e",
+        "bytes": 15922
+      },
+      {
+        "path": "ckeditor/translations/et.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/et.js",
+        "gitBlob": "f0377a21dbe0394ae085a1ac49e7cfb69cc967b6",
+        "bytes": 14544
+      },
+      {
+        "path": "ckeditor/translations/eu.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/eu.js",
+        "gitBlob": "f7f9c0e786b11bcde81cb6470614ded1035fe007",
+        "bytes": 8422
+      },
+      {
+        "path": "ckeditor/translations/fa.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/fa.js",
+        "gitBlob": "081dd93c6084dd766b1d76b1cd9a118948aa84b6",
+        "bytes": 12060
+      },
+      {
+        "path": "ckeditor/translations/fi.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/fi.js",
+        "gitBlob": "1ed78290c102cfddcb03d9b1f1988f32624eb8b5",
+        "bytes": 15174
+      },
+      {
+        "path": "ckeditor/translations/fr.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/fr.js",
+        "gitBlob": "291b30ee3efd9e55c452a76b655c156724b0f6b1",
+        "bytes": 16271
+      },
+      {
+        "path": "ckeditor/translations/gl.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/gl.js",
+        "gitBlob": "1d890d1b2cb7dc7fd4b2ea1d2a3041af36fbbf40",
+        "bytes": 15959
+      },
+      {
+        "path": "ckeditor/translations/gu.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/gu.js",
+        "gitBlob": "d272713f705978b2a86d215bafc6e657a5da2b7e",
+        "bytes": 8136
+      },
+      {
+        "path": "ckeditor/translations/he.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/he.js",
+        "gitBlob": "205ac8d18fe40ed3f5d70d3337568adf3e7c057e",
+        "bytes": 17593
+      },
+      {
+        "path": "ckeditor/translations/hi.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/hi.js",
+        "gitBlob": "a3646e7af5502f7163722f19027972a20a1c0f43",
+        "bytes": 20029
+      },
+      {
+        "path": "ckeditor/translations/hr.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/hr.js",
+        "gitBlob": "55d524cf93adac3dd5b4e1f010e62fe670c56dc8",
+        "bytes": 12029
+      },
+      {
+        "path": "ckeditor/translations/hu.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/hu.js",
+        "gitBlob": "71852d893211554dd6c7e63fbf8fcc9515fd1dad",
+        "bytes": 15898
+      },
+      {
+        "path": "ckeditor/translations/hy.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/hy.js",
+        "gitBlob": "f065945191cb61a358c201cec4eb40414f857c27",
+        "bytes": 8209
+      },
+      {
+        "path": "ckeditor/translations/id.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/id.js",
+        "gitBlob": "acac59083c7384ec1d42e23ebc829bfc0da1c59e",
+        "bytes": 14527
+      },
+      {
+        "path": "ckeditor/translations/it.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/it.js",
+        "gitBlob": "7db4c5c12b2c08b6bde5b1ea889993ab4382568f",
+        "bytes": 16455
+      },
+      {
+        "path": "ckeditor/translations/ja.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ja.js",
+        "gitBlob": "5aa90b5f97a4797c989df5a428c8d5af227309dd",
+        "bytes": 17555
+      },
+      {
+        "path": "ckeditor/translations/jv.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/jv.js",
+        "gitBlob": "641971229ca1bf127652c435888e974855e56400",
+        "bytes": 8636
+      },
+      {
+        "path": "ckeditor/translations/kk.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/kk.js",
+        "gitBlob": "c1d2561c61a3210d09ef125405082620f705526e",
+        "bytes": 8138
+      },
+      {
+        "path": "ckeditor/translations/km.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/km.js",
+        "gitBlob": "bb2e5caeccd3326b2b8eb6b9faa660a28fdb5566",
+        "bytes": 9304
+      },
+      {
+        "path": "ckeditor/translations/kn.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/kn.js",
+        "gitBlob": "2b2f448a318b2119737f23e7f3093ee98f5ac337",
+        "bytes": 8896
+      },
+      {
+        "path": "ckeditor/translations/ko.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ko.js",
+        "gitBlob": "521a5dfdcdebef16046f155fbb5ccb7569bf8e60",
+        "bytes": 15602
+      },
+      {
+        "path": "ckeditor/translations/ku.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ku.js",
+        "gitBlob": "b0647d97419dddfad20b671a3582e76ed838f51c",
+        "bytes": 11592
+      },
+      {
+        "path": "ckeditor/translations/lt.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/lt.js",
+        "gitBlob": "6850a727bdb219f51cb4487a95c55f2d342f97d3",
+        "bytes": 16215
+      },
+      {
+        "path": "ckeditor/translations/lv.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/lv.js",
+        "gitBlob": "0ae9e0cce9699c06e8e91f2bce92c5aa5beb2698",
+        "bytes": 15717
+      },
+      {
+        "path": "ckeditor/translations/ms.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ms.js",
+        "gitBlob": "fdea6ceb9f2d7d608363e314a8dab35fe210209e",
+        "bytes": 14749
+      },
+      {
+        "path": "ckeditor/translations/nb.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/nb.js",
+        "gitBlob": "13e57e101bc2b3dc05ba5c07e3f2002cd3248d8f",
+        "bytes": 9021
+      },
+      {
+        "path": "ckeditor/translations/ne.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ne.js",
+        "gitBlob": "20dfa4396d5bf7a87129e697ee04c6ba409a18a7",
+        "bytes": 12745
+      },
+      {
+        "path": "ckeditor/translations/nl.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/nl.js",
+        "gitBlob": "6f08dee8fca581399e6f8559d5ebb2f645a020cf",
+        "bytes": 15355
+      },
+      {
+        "path": "ckeditor/translations/no.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/no.js",
+        "gitBlob": "47d32c245ad3cfd719b2ee11956cd0d4b6753f2d",
+        "bytes": 14600
+      },
+      {
+        "path": "ckeditor/translations/oc.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/oc.js",
+        "gitBlob": "c4daff14bd4f689560fbf62b93dc058f0aa46d71",
+        "bytes": 7999
+      },
+      {
+        "path": "ckeditor/translations/pl.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/pl.js",
+        "gitBlob": "b1f8f00dec3886c2fcbd902158ed56e707cd5775",
+        "bytes": 15957
+      },
+      {
+        "path": "ckeditor/translations/pt-br.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/pt-br.js",
+        "gitBlob": "9344ef00977b6969d2ea7f1ad4d5b1edca8b21b6",
+        "bytes": 15435
+      },
+      {
+        "path": "ckeditor/translations/pt.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/pt.js",
+        "gitBlob": "5881775b8ceb95b4ccee17a8dd2988ce420e6285",
+        "bytes": 16086
+      },
+      {
+        "path": "ckeditor/translations/ro.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ro.js",
+        "gitBlob": "8a220c2cb790b912f9530e8cd08ffbdc7f6fd672",
+        "bytes": 16017
+      },
+      {
+        "path": "ckeditor/translations/ru.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ru.js",
+        "gitBlob": "6c0c7492e57c63f8510bc1767b23cc1b57bf9839",
+        "bytes": 22725
+      },
+      {
+        "path": "ckeditor/translations/si.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/si.js",
+        "gitBlob": "3480c62338d35655a815c8439c311effe8a2a5b1",
+        "bytes": 8274
+      },
+      {
+        "path": "ckeditor/translations/sk.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/sk.js",
+        "gitBlob": "279edcaf90e4ce49f7852e2c262164529e737ffc",
+        "bytes": 15579
+      },
+      {
+        "path": "ckeditor/translations/sl.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/sl.js",
+        "gitBlob": "fe1534d60b58ecb770533a4fec1f7759005ec40d",
+        "bytes": 8733
+      },
+      {
+        "path": "ckeditor/translations/sq.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/sq.js",
+        "gitBlob": "3a9a003deff0c4034e14a070c1588edd2b5d25c5",
+        "bytes": 10502
+      },
+      {
+        "path": "ckeditor/translations/sr-latn.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/sr-latn.js",
+        "gitBlob": "24d1ef5eafcf7223c6cc863154f447424289ec9b",
+        "bytes": 14985
+      },
+      {
+        "path": "ckeditor/translations/sr.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/sr.js",
+        "gitBlob": "c3e6b9a1a70eed1d7f80e08a60295eb8aa7bfcaa",
+        "bytes": 18253
+      },
+      {
+        "path": "ckeditor/translations/sv.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/sv.js",
+        "gitBlob": "4c50be94fcfeb56387bb792b9edfee921aa5cfbc",
+        "bytes": 14535
+      },
+      {
+        "path": "ckeditor/translations/th.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/th.js",
+        "gitBlob": "d68ba2853057b50c69f57330eaaae6daa565b229",
+        "bytes": 25207
+      },
+      {
+        "path": "ckeditor/translations/ti.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ti.js",
+        "gitBlob": "0c4ad1a5d2d31597384ffa7c8c690a38f2d8dfc3",
+        "bytes": 9348
+      },
+      {
+        "path": "ckeditor/translations/tk.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/tk.js",
+        "gitBlob": "02bee54d6ba4bef86ddb00f1eaf212631d299715",
+        "bytes": 11088
+      },
+      {
+        "path": "ckeditor/translations/tr.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/tr.js",
+        "gitBlob": "5b9a57e7ace7b84f329bc42197a9f23396b77af1",
+        "bytes": 15548
+      },
+      {
+        "path": "ckeditor/translations/tt.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/tt.js",
+        "gitBlob": "0207b3fed9d39d70bfcb21d386880719bfb4e8e3",
+        "bytes": 8684
+      },
+      {
+        "path": "ckeditor/translations/ug.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ug.js",
+        "gitBlob": "7fdfc6d0a6cf15492fc118549b620f5e3feaa85a",
+        "bytes": 17319
+      },
+      {
+        "path": "ckeditor/translations/uk.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/uk.js",
+        "gitBlob": "7df3ad65390fc066abda509778175d441ecc7c87",
+        "bytes": 21875
+      },
+      {
+        "path": "ckeditor/translations/ur.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/ur.js",
+        "gitBlob": "29a5017fee1b37a2ea14070930810d9f5e527462",
+        "bytes": 11082
+      },
+      {
+        "path": "ckeditor/translations/uz.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/uz.js",
+        "gitBlob": "8b93687b9667f4745997506032cddf77397f65f6",
+        "bytes": 11478
+      },
+      {
+        "path": "ckeditor/translations/vi.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/vi.js",
+        "gitBlob": "59631b6bd71e0f2b8ae536bba607dda222e47545",
+        "bytes": 17098
+      },
+      {
+        "path": "ckeditor/translations/zh-cn.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/zh-cn.js",
+        "gitBlob": "abc53f0e3ff85aa7ffecfefe8ab1a99d552f730f",
+        "bytes": 14101
+      },
+      {
+        "path": "ckeditor/translations/zh.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor/translations/zh.js",
+        "gitBlob": "06d98a0db70f7b697625787415bbbaecd95b318a",
+        "bytes": 13616
+      },
+      {
+        "path": "ckeditor5/.gitignore",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/.gitignore",
+        "gitBlob": "3c3629e647f5ddf82548912e337bea9826b434af",
+        "bytes": 13
+      },
+      {
+        "path": "ckeditor5/LICENSE.md",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/LICENSE.md",
+        "gitBlob": "97f7ccef41b27078578c7c065db011e601322c6d",
+        "bytes": 2167
+      },
+      {
+        "path": "ckeditor5/README.md",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/README.md",
+        "gitBlob": "c47f469ac2fc3f0b152d994d30a69090fba449d4",
+        "bytes": 3112
+      },
+      {
+        "path": "ckeditor5/build/ckeditor.d.ts",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/build/ckeditor.d.ts",
+        "gitBlob": "8b773713b42a35c2f9389fd8934e7a8565fe7cca",
+        "bytes": 2872
+      },
+      {
+        "path": "ckeditor5/package-lock.json",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/package-lock.json",
+        "gitBlob": "c7385cfe14ebc60a0ac2d67fb9470ae88d5cb888",
+        "bytes": 199469
+      },
+      {
+        "path": "ckeditor5/package.json",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/package.json",
+        "gitBlob": "1e8876de47abe6a82595def44540da88b518c7dd",
+        "bytes": 2109
+      },
+      {
+        "path": "ckeditor5/sample/index.html",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/sample/index.html",
+        "gitBlob": "db9a23ec02e7e4ad206a4092dfe0d83ce9ae71e7",
+        "bytes": 4714
+      },
+      {
+        "path": "ckeditor5/sample/script.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/sample/script.js",
+        "gitBlob": "8c1a418d6f3b44d1162acaceb943f183e6baf694",
+        "bytes": 535
+      },
+      {
+        "path": "ckeditor5/sample/styles.css",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/sample/styles.css",
+        "gitBlob": "d85d057f48754975f1cf9ade1c4f266e40f8181d",
+        "bytes": 11551
+      },
+      {
+        "path": "ckeditor5/src/ckeditor.ts",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/src/ckeditor.ts",
+        "gitBlob": "edd8f7916d13dc5a113109eb82949669a6b822be",
+        "bytes": 3527
+      },
+      {
+        "path": "ckeditor5/tsconfig.json",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/tsconfig.json",
+        "gitBlob": "210721e8cb40174822057d3258e59ba1a7fa7d0e",
+        "bytes": 342
+      },
+      {
+        "path": "ckeditor5/tsconfig.types.json",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/tsconfig.types.json",
+        "gitBlob": "9495c585b3d2171baaf74c4d9bbbaf43a75bcafc",
+        "bytes": 178
+      },
+      {
+        "path": "ckeditor5/webpack.config.js",
+        "targetPath": "modules/h5peditor/h5peditor/ckeditor5/webpack.config.js",
+        "gitBlob": "b11920096ab8322131429367c288e6bf81f55c5c",
+        "bytes": 2165
+      },
+      {
+        "path": "composer.json",
+        "targetPath": "modules/h5peditor/h5peditor/composer.json",
+        "gitBlob": "d73c718f03033055a33fa592d8bbca1643153c15",
+        "bytes": 928
+      },
+      {
+        "path": "h5peditor-ajax.class.php",
+        "targetPath": "modules/h5peditor/h5peditor/h5peditor-ajax.class.php",
+        "gitBlob": "812bab3807127552bf053ce6e89ea10a8a4c8931",
+        "bytes": 15274
+      },
+      {
+        "path": "h5peditor-ajax.interface.php",
+        "targetPath": "modules/h5peditor/h5peditor/h5peditor-ajax.interface.php",
+        "gitBlob": "d45b2b1bea17184d03151709d5c2c5157c441bab",
+        "bytes": 1411
+      },
+      {
+        "path": "h5peditor-file.class.php",
+        "targetPath": "modules/h5peditor/h5peditor/h5peditor-file.class.php",
+        "gitBlob": "858f37838deb889868df21cf39536b3215853118",
+        "bytes": 6255
+      },
+      {
+        "path": "h5peditor-storage.interface.php",
+        "targetPath": "modules/h5peditor/h5peditor/h5peditor-storage.interface.php",
+        "gitBlob": "92939c8c79169d7c7beb6debc17b090a47cf7190",
+        "bytes": 3128
+      },
+      {
+        "path": "h5peditor.class.php",
+        "targetPath": "modules/h5peditor/h5peditor/h5peditor.class.php",
+        "gitBlob": "03afc4617ffb1235799339972008c671f8f25b52",
+        "bytes": 27584
+      },
+      {
+        "path": "images/add.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/add.png",
+        "gitBlob": "703e8132c893a532293a06e116bf481be411506d",
+        "bytes": 2410
+      },
+      {
+        "path": "images/binary-file.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/binary-file.png",
+        "gitBlob": "69d2d2fd0152ef7cce6ed94f1ad637fd7cedbfac",
+        "bytes": 6009
+      },
+      {
+        "path": "images/collapse.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/collapse.png",
+        "gitBlob": "eced95610b7c72bf86fdcb98006486f9235a7b8c",
+        "bytes": 203
+      },
+      {
+        "path": "images/cropper/cancel.svg",
+        "targetPath": "modules/h5peditor/h5peditor/images/cropper/cancel.svg",
+        "gitBlob": "a3335fac8f03b98fde59a9a339a613285cd6d0b4",
+        "bytes": 7986
+      },
+      {
+        "path": "images/cropper/confirm.svg",
+        "targetPath": "modules/h5peditor/h5peditor/images/cropper/confirm.svg",
+        "gitBlob": "c068318cdc7a252cde51fe6733420bb85eeeaa2e",
+        "bytes": 7094
+      },
+      {
+        "path": "images/cropper/crop.svg",
+        "targetPath": "modules/h5peditor/h5peditor/images/cropper/crop.svg",
+        "gitBlob": "7058f99aafa4e7ea1b2602492637554bbb7d60bf",
+        "bytes": 4444
+      },
+      {
+        "path": "images/cropper/rotate-left.svg",
+        "targetPath": "modules/h5peditor/h5peditor/images/cropper/rotate-left.svg",
+        "gitBlob": "98c755dba2a9a2552c9f5bbbcc599e58c3c0cbdf",
+        "bytes": 6081
+      },
+      {
+        "path": "images/cropper/rotate-right.svg",
+        "targetPath": "modules/h5peditor/h5peditor/images/cropper/rotate-right.svg",
+        "gitBlob": "a8363472535b5d6336aeb5b0cc89772077f7bf4a",
+        "bytes": 5693
+      },
+      {
+        "path": "images/down.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/down.png",
+        "gitBlob": "b1d2783aa0029643eede28011afaab9fe9a2629e",
+        "bytes": 223
+      },
+      {
+        "path": "images/expand.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/expand.png",
+        "gitBlob": "841742195b61c1872df7b64072df769a53c99449",
+        "bytes": 201
+      },
+      {
+        "path": "images/order.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/order.png",
+        "gitBlob": "09edf0b323eb1bbc83264ac9c9226772474f4236",
+        "bytes": 464
+      },
+      {
+        "path": "images/remove.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/remove.png",
+        "gitBlob": "39155ef4d9602b1e8d7cb7716139c7867387c9a7",
+        "bytes": 603
+      },
+      {
+        "path": "images/transparent-background.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/transparent-background.png",
+        "gitBlob": "c18bef9349eeb609ed1d55bd771a599f3a97de84",
+        "bytes": 954
+      },
+      {
+        "path": "images/webm-file.png",
+        "targetPath": "modules/h5peditor/h5peditor/images/webm-file.png",
+        "gitBlob": "da54652728a4d41197204169e31f67c2d710d287",
+        "bytes": 6760
+      },
+      {
+        "path": "language/ar.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/ar.js",
+        "gitBlob": "32bd7d1f0a6f12bf440320981eb3cdc65472befa",
+        "bytes": 17456
+      },
+      {
+        "path": "language/bs.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/bs.js",
+        "gitBlob": "4316ab2874dbebea92ea1414a78a90ef637ec703",
+        "bytes": 15921
+      },
+      {
+        "path": "language/cs.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/cs.js",
+        "gitBlob": "44601aa924edee06eb56a416ff86c5fe12a7c4b7",
+        "bytes": 16101
+      },
+      {
+        "path": "language/de.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/de.js",
+        "gitBlob": "f0b45c540bf602a3e5fe2aeffb068191d931af78",
+        "bytes": 17532
+      },
+      {
+        "path": "language/el.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/el.js",
+        "gitBlob": "a29047d52e0d1617ce9b4e797ac1015a9e51e947",
+        "bytes": 20975
+      },
+      {
+        "path": "language/en.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/en.js",
+        "gitBlob": "888b1690c04517b4169a55c77c98458883fb7ebf",
+        "bytes": 15471
+      },
+      {
+        "path": "language/es-cr.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/es-cr.js",
+        "gitBlob": "c6562bb1f1696b075dc0deb0168706b1c185c0e3",
+        "bytes": 16857
+      },
+      {
+        "path": "language/es-mx.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/es-mx.js",
+        "gitBlob": "049a183a39435163d48c6fdb5ddab05314e82c87",
+        "bytes": 16908
+      },
+      {
+        "path": "language/es.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/es.js",
+        "gitBlob": "f73825c7177893335ff93646e2caf59036481dff",
+        "bytes": 16868
+      },
+      {
+        "path": "language/et.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/et.js",
+        "gitBlob": "540514982fd3566027df8790ea026a2fbb951dad",
+        "bytes": 15647
+      },
+      {
+        "path": "language/eu.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/eu.js",
+        "gitBlob": "8e189745e923913b73759d1b724ddf73c72456b6",
+        "bytes": 16492
+      },
+      {
+        "path": "language/fi.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/fi.js",
+        "gitBlob": "34520d291a6dfdd1470bff370e1c1869ecb5d601",
+        "bytes": 16247
+      },
+      {
+        "path": "language/fr.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/fr.js",
+        "gitBlob": "d63766ca4ff06f50dd1ad00e758e988285ef373e",
+        "bytes": 17358
+      },
+      {
+        "path": "language/gl.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/gl.js",
+        "gitBlob": "7eb07f79d9eab00b3ca540dbf55b3ee1b902b239",
+        "bytes": 16575
+      },
+      {
+        "path": "language/hr.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/hr.js",
+        "gitBlob": "6feba5b93d240ba44b0b646976bc3de643f20a5f",
+        "bytes": 19587
+      },
+      {
+        "path": "language/it.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/it.js",
+        "gitBlob": "55ebcdfaed278b0142b6cd4f2da81be733b115b2",
+        "bytes": 17070
+      },
+      {
+        "path": "language/ko.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/ko.js",
+        "gitBlob": "13b72a85a9cd9bb7010c4f764191acf5038330ea",
+        "bytes": 17447
+      },
+      {
+        "path": "language/nb.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/nb.js",
+        "gitBlob": "6223ded228c0b772e167cc3b7cfd79dee1de55e4",
+        "bytes": 16121
+      },
+      {
+        "path": "language/nl.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/nl.js",
+        "gitBlob": "fe0fe2d51d2a21eef1910608abe3b4dcbe7c3118",
+        "bytes": 16373
+      },
+      {
+        "path": "language/nn.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/nn.js",
+        "gitBlob": "09b593f5e61b5536feb58a7c2dd74423198d04f4",
+        "bytes": 15733
+      },
+      {
+        "path": "language/pl.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/pl.js",
+        "gitBlob": "1e675cdb15bc06f0a952b8271fe154f5e04667d5",
+        "bytes": 16066
+      },
+      {
+        "path": "language/pt-br.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/pt-br.js",
+        "gitBlob": "e26992e914e2b48fb86a09ae23480fd206cd6949",
+        "bytes": 16480
+      },
+      {
+        "path": "language/pt.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/pt.js",
+        "gitBlob": "2d4d65aab6cef653983c6eeb5e9323a5008d463a",
+        "bytes": 17008
+      },
+      {
+        "path": "language/ru.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/ru.js",
+        "gitBlob": "399ce3efbba1f508b6878bfaf309d62ee00ffcbc",
+        "bytes": 22780
+      },
+      {
+        "path": "language/sl.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/sl.js",
+        "gitBlob": "8fab266490da1b5309987d0bdc8489c08b5c89ef",
+        "bytes": 16175
+      },
+      {
+        "path": "language/sv.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/sv.js",
+        "gitBlob": "10022bb2f65a35b3ad8b3a596a9bbd39ae0898c7",
+        "bytes": 15863
+      },
+      {
+        "path": "language/tr.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/tr.js",
+        "gitBlob": "8da7540664d49435d9a0c83354890c80b0e889d5",
+        "bytes": 16346
+      },
+      {
+        "path": "language/zh-cn.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/zh-cn.js",
+        "gitBlob": "8f1306d98bf48c07228443d75564379a780b8b8b",
+        "bytes": 14554
+      },
+      {
+        "path": "language/zh-hans.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/zh-hans.js",
+        "gitBlob": "8f1306d98bf48c07228443d75564379a780b8b8b",
+        "bytes": 14554
+      },
+      {
+        "path": "language/zh.js",
+        "targetPath": "modules/h5peditor/h5peditor/language/zh.js",
+        "gitBlob": "8f1306d98bf48c07228443d75564379a780b8b8b",
+        "bytes": 14554
+      },
+      {
+        "path": "libs/cropper.css",
+        "targetPath": "modules/h5peditor/h5peditor/libs/cropper.css",
+        "gitBlob": "dbeed421b04cf45a2404e0a28f3e83f974b28627",
+        "bytes": 3989
+      },
+      {
+        "path": "libs/cropper.js",
+        "targetPath": "modules/h5peditor/h5peditor/libs/cropper.js",
+        "gitBlob": "dd7b143eeb1e8bb517d5b1e7905f6e972c8d3b25",
+        "bytes": 11708
+      },
+      {
+        "path": "libs/zebra_datepicker.min.js",
+        "targetPath": "modules/h5peditor/h5peditor/libs/zebra_datepicker.min.js",
+        "gitBlob": "e62803474b6c5acdf86e29db6e1d1c5091531c0c",
+        "bytes": 32914
+      },
+      {
+        "path": "package-lock.json",
+        "targetPath": "modules/h5peditor/h5peditor/package-lock.json",
+        "gitBlob": "4b22e0a1c3344e4b55d5914eb1030705782508e3",
+        "bytes": 82127
+      },
+      {
+        "path": "package.json",
+        "targetPath": "modules/h5peditor/h5peditor/package.json",
+        "gitBlob": "ddbee18f19187d927a3ebb66b9462c9617800f63",
+        "bytes": 703
+      },
+      {
+        "path": "scripts/h5p-hub-client.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5p-hub-client.js",
+        "gitBlob": "01282fe3e6fbd39ae63bf8622cb21508dc4769fa",
+        "bytes": 307496
+      },
+      {
+        "path": "scripts/h5peditor-av.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-av.js",
+        "gitBlob": "97e856d0e61b386700421bc31c25d73f05ecb5b9",
+        "bytes": 22029
+      },
+      {
+        "path": "scripts/h5peditor-boolean.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-boolean.js",
+        "gitBlob": "3e918fe6a4ebe4d08590d30685c3197d62689ee8",
+        "bytes": 2036
+      },
+      {
+        "path": "scripts/h5peditor-coordinates.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-coordinates.js",
+        "gitBlob": "59ba1900ef2a33c955f2fefa6c95c42d33bc80ff",
+        "bytes": 5224
+      },
+      {
+        "path": "scripts/h5peditor-dimensions.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-dimensions.js",
+        "gitBlob": "8c2081c6bf085f6f70aa95df1cc69ee31326d0d9",
+        "bytes": 4361
+      },
+      {
+        "path": "scripts/h5peditor-editor.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-editor.js",
+        "gitBlob": "10482740f5c29e881877c19305d38f72cc5bdcbc",
+        "bytes": 18691
+      },
+      {
+        "path": "scripts/h5peditor-file-uploader.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-file-uploader.js",
+        "gitBlob": "3953e4f6fcde768e020f6d9e5fe7c62d20d00948",
+        "bytes": 3774
+      },
+      {
+        "path": "scripts/h5peditor-file.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-file.js",
+        "gitBlob": "922881197cd2e1ec4d64d888d4383b9ae30a19bc",
+        "bytes": 8746
+      },
+      {
+        "path": "scripts/h5peditor-form.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-form.js",
+        "gitBlob": "bd194bc9e84ae3b4749600cffcc5a8025bd76191",
+        "bytes": 14335
+      },
+      {
+        "path": "scripts/h5peditor-fullscreen-bar.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-fullscreen-bar.js",
+        "gitBlob": "7f987b308c7f2576730a4689e5cdfdc287c68690",
+        "bytes": 2763
+      },
+      {
+        "path": "scripts/h5peditor-group.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-group.js",
+        "gitBlob": "f2f31aefcb7e2f789f4936d9f5b2918fe8f5cd84",
+        "bytes": 11002
+      },
+      {
+        "path": "scripts/h5peditor-html.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-html.js",
+        "gitBlob": "5e34ed146172db622bc1ed024d43690605254990",
+        "bytes": 19779
+      },
+      {
+        "path": "scripts/h5peditor-image-popup.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-image-popup.js",
+        "gitBlob": "872f7bddccd498b86c810ac6d28a1451d8af6ff2",
+        "bytes": 14241
+      },
+      {
+        "path": "scripts/h5peditor-image.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-image.js",
+        "gitBlob": "9bc0d980b6a00c8f663f3024ea8320557786905b",
+        "bytes": 8299
+      },
+      {
+        "path": "scripts/h5peditor-init.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-init.js",
+        "gitBlob": "a78f6d345da23dbd5cff646825b19d9fb6b5cf67",
+        "bytes": 3813
+      },
+      {
+        "path": "scripts/h5peditor-library-list-cache.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-library-list-cache.js",
+        "gitBlob": "9a8ee448783e3da1e223c59d2faad9088475a12e",
+        "bytes": 3465
+      },
+      {
+        "path": "scripts/h5peditor-library-selector.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-library-selector.js",
+        "gitBlob": "61a05e84c05d14341ebfd5ec6d1939b2b1a599a5",
+        "bytes": 10030
+      },
+      {
+        "path": "scripts/h5peditor-library.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-library.js",
+        "gitBlob": "259acb80cd0f26cb3622046228097b16d4ba6f4b",
+        "bytes": 17388
+      },
+      {
+        "path": "scripts/h5peditor-list-editor.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-list-editor.js",
+        "gitBlob": "dfaf455c44826ad1167965ec3fbff40c1f1697ef",
+        "bytes": 24929
+      },
+      {
+        "path": "scripts/h5peditor-list.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-list.js",
+        "gitBlob": "88cc323762a76f82addaa72f49d66d72b8932e30",
+        "bytes": 11413
+      },
+      {
+        "path": "scripts/h5peditor-metadata-author-widget.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-metadata-author-widget.js",
+        "gitBlob": "3cdc6dcc4b87f71a6710d036762c15ad9ef5fc10",
+        "bytes": 4003
+      },
+      {
+        "path": "scripts/h5peditor-metadata-changelog-widget.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-metadata-changelog-widget.js",
+        "gitBlob": "e664dbe281abd67937490416d52661e06612a6c0",
+        "bytes": 7682
+      },
+      {
+        "path": "scripts/h5peditor-metadata.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-metadata.js",
+        "gitBlob": "2be54e5114ad85677bb375129c7a61a1189ea6c8",
+        "bytes": 14972
+      },
+      {
+        "path": "scripts/h5peditor-none.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-none.js",
+        "gitBlob": "f0535d761d21b38da1ac3176cfd43026ebd63776",
+        "bytes": 918
+      },
+      {
+        "path": "scripts/h5peditor-number.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-number.js",
+        "gitBlob": "6663457c02c84e16fb1d0689d158b0b957dc356b",
+        "bytes": 4903
+      },
+      {
+        "path": "scripts/h5peditor-pre-save.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-pre-save.js",
+        "gitBlob": "bda25ee7f400179015e98b9af866884c6a70e4b0",
+        "bytes": 3708
+      },
+      {
+        "path": "scripts/h5peditor-select.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-select.js",
+        "gitBlob": "0cd9bf60aff279f2551f51d9a71abe81a1515aa8",
+        "bytes": 3321
+      },
+      {
+        "path": "scripts/h5peditor-selector-hub.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-selector-hub.js",
+        "gitBlob": "d58c419c2b84450dfcad67c284eca91e38567a6e",
+        "bytes": 8018
+      },
+      {
+        "path": "scripts/h5peditor-selector-legacy.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-selector-legacy.js",
+        "gitBlob": "e3608178ac2bda44ffbb030e90b29c0699923470",
+        "bytes": 3189
+      },
+      {
+        "path": "scripts/h5peditor-semantic-structure.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-semantic-structure.js",
+        "gitBlob": "6f4b1cf7ba182353fce36e94638c8c434f61250d",
+        "bytes": 7565
+      },
+      {
+        "path": "scripts/h5peditor-text.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-text.js",
+        "gitBlob": "8d20c727a2a04a8063fd2218d6081c9076939c03",
+        "bytes": 3226
+      },
+      {
+        "path": "scripts/h5peditor-textarea.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor-textarea.js",
+        "gitBlob": "2a49c26358e80604182dd96040c232392baeaa3f",
+        "bytes": 2741
+      },
+      {
+        "path": "scripts/h5peditor.js",
+        "targetPath": "modules/h5peditor/h5peditor/scripts/h5peditor.js",
+        "gitBlob": "91922834778941f3681d43ecfacbd2078e22708e",
+        "bytes": 54922
+      },
+      {
+        "path": "styles/css/a1aff8c82bc779d09357.png",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/a1aff8c82bc779d09357.png",
+        "gitBlob": "b1d2783aa0029643eede28011afaab9fe9a2629e",
+        "bytes": 223
+      },
+      {
+        "path": "styles/css/ae8568c2320881fd5899.png",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/ae8568c2320881fd5899.png",
+        "gitBlob": "c18bef9349eeb609ed1d55bd771a599f3a97de84",
+        "bytes": 954
+      },
+      {
+        "path": "styles/css/application.css",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/application.css",
+        "gitBlob": "bc28ae1b7a88bfa49447bfa5f0c6857a4aeada71",
+        "bytes": 56530
+      },
+      {
+        "path": "styles/css/cke-contents.css",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/cke-contents.css",
+        "gitBlob": "ed8446a3798113904f32710a1292eea367c4cca1",
+        "bytes": 283
+      },
+      {
+        "path": "styles/css/fonts.css",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts.css",
+        "gitBlob": "25579a6654f23684659a3d34282af103feb25d1f",
+        "bytes": 804
+      },
+      {
+        "path": "styles/css/fonts/h5p-fullscreen-bar.eot",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-fullscreen-bar.eot",
+        "gitBlob": "cdefabfb0e5f5b825c69916a06ea182dc0195447",
+        "bytes": 6492
+      },
+      {
+        "path": "styles/css/fonts/h5p-fullscreen-bar.svg",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-fullscreen-bar.svg",
+        "gitBlob": "cc91270479c66bb1da5935e25a67198491ba0aba",
+        "bytes": 22953
+      },
+      {
+        "path": "styles/css/fonts/h5p-fullscreen-bar.ttf",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-fullscreen-bar.ttf",
+        "gitBlob": "fc1a55ff72424a6b169f6b4094d4a6e070e5c409",
+        "bytes": 6344
+      },
+      {
+        "path": "styles/css/fonts/h5p-fullscreen-bar.woff",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-fullscreen-bar.woff",
+        "gitBlob": "ae427e3381e5df6b922b68c0afaa8996a094cff8",
+        "bytes": 6420
+      },
+      {
+        "path": "styles/css/fonts/h5p-hub.eot",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-hub.eot",
+        "gitBlob": "395d76dfc91f39a46abebe48448af77dc3096cf9",
+        "bytes": 6404
+      },
+      {
+        "path": "styles/css/fonts/h5p-hub.svg",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-hub.svg",
+        "gitBlob": "7075383102eb52898a9e8ed559f36c318d3a0531",
+        "bytes": 20405
+      },
+      {
+        "path": "styles/css/fonts/h5p-hub.ttf",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-hub.ttf",
+        "gitBlob": "7838a86417e575192708e0843a6dfb6084dcbf8f",
+        "bytes": 6240
+      },
+      {
+        "path": "styles/css/fonts/h5p-hub.woff",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-hub.woff",
+        "gitBlob": "03ab052d57765269c85437a66f516b962e362251",
+        "bytes": 6316
+      },
+      {
+        "path": "styles/css/fonts/h5p-metadata-icons.eot",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-metadata-icons.eot",
+        "gitBlob": "ad0d43a9805fb0661a0cac713299996b932fecab",
+        "bytes": 5808
+      },
+      {
+        "path": "styles/css/fonts/h5p-metadata-icons.svg",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-metadata-icons.svg",
+        "gitBlob": "e68dfe6356ffceafc0fa2244e9e0f2018c308375",
+        "bytes": 18626
+      },
+      {
+        "path": "styles/css/fonts/h5p-metadata-icons.ttf",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-metadata-icons.ttf",
+        "gitBlob": "45b5cb94fe1db74ebdfecb39ee7ceb9511727062",
+        "bytes": 5600
+      },
+      {
+        "path": "styles/css/fonts/h5p-metadata-icons.woff",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/fonts/h5p-metadata-icons.woff",
+        "gitBlob": "98142a58fa4a9698205b3e8b3b8066d0c61edc38",
+        "bytes": 5676
+      },
+      {
+        "path": "styles/css/h5p-hub-client.css",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/h5p-hub-client.css",
+        "gitBlob": "e6f1b3931b7af60b3e6b6029e66c8bcf10bfd232",
+        "bytes": 69018
+      },
+      {
+        "path": "styles/css/libs/icons.png",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/libs/icons.png",
+        "gitBlob": "f5f153e5a06779460cb930964d92e4a525b7c6aa",
+        "bytes": 494
+      },
+      {
+        "path": "styles/css/libs/zebra_datepicker.min.css",
+        "targetPath": "modules/h5peditor/h5peditor/styles/css/libs/zebra_datepicker.min.css",
+        "gitBlob": "55801d51234661c11aced343a641dc73032859e8",
+        "bytes": 2813
+      },
+      {
+        "path": "styles/scss/_copy-paste.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_copy-paste.scss",
+        "gitBlob": "a19f3e3db1aa538b5b9146dfcd453774112c0aea",
+        "bytes": 1846
+      },
+      {
+        "path": "styles/scss/_deprecated.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_deprecated.scss",
+        "gitBlob": "5610d57cb079d1bf0b4789cc5a46c6382a053616",
+        "bytes": 376
+      },
+      {
+        "path": "styles/scss/_form-field.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_form-field.scss",
+        "gitBlob": "4439013a910c71f749fa422ef817fe946517f4f9",
+        "bytes": 901
+      },
+      {
+        "path": "styles/scss/_form-groups.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_form-groups.scss",
+        "gitBlob": "7364b2b8ff3db64bfdff15598796361c5b9316fe",
+        "bytes": 8601
+      },
+      {
+        "path": "styles/scss/_fullscreen-bar.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_fullscreen-bar.scss",
+        "gitBlob": "67b7f5a497a235ed68f482edd6e4394631708130",
+        "bytes": 4032
+      },
+      {
+        "path": "styles/scss/_h5peditor-image-edit-popup.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_h5peditor-image-edit-popup.scss",
+        "gitBlob": "c8c21b38226d46632ffc349c8a03be1a22e1461c",
+        "bytes": 2471
+      },
+      {
+        "path": "styles/scss/_h5peditor-image-edit.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_h5peditor-image-edit.scss",
+        "gitBlob": "ebeb318b7d306f51fd91b2172563bb7d13a003f4",
+        "bytes": 1004
+      },
+      {
+        "path": "styles/scss/_metadata-author-widget.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_metadata-author-widget.scss",
+        "gitBlob": "1770445ddf0b64603972f5a4e31ebc517c0a3fd5",
+        "bytes": 1722
+      },
+      {
+        "path": "styles/scss/_metadata-changelog-widget.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_metadata-changelog-widget.scss",
+        "gitBlob": "656eba1cbaa584d89c86e011c36f57655d6cab31",
+        "bytes": 2137
+      },
+      {
+        "path": "styles/scss/_metadata-form.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_metadata-form.scss",
+        "gitBlob": "1bc1129e553dbd3da8c1bcf2f7de783258f35c40",
+        "bytes": 6971
+      },
+      {
+        "path": "styles/scss/_metadata-popup.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_metadata-popup.scss",
+        "gitBlob": "2962a17bc9f3e83ce273624cf70ce50ddf4c8339",
+        "bytes": 290
+      },
+      {
+        "path": "styles/scss/_mixins.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_mixins.scss",
+        "gitBlob": "96730d36d6c1985a4d8f937a449a631df4b8694c",
+        "bytes": 309
+      },
+      {
+        "path": "styles/scss/_tutorial-and-example-links.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_tutorial-and-example-links.scss",
+        "gitBlob": "a1a18cd57680943d245133f00fa1bfffdb34897b",
+        "bytes": 1895
+      },
+      {
+        "path": "styles/scss/_utils.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_utils.scss",
+        "gitBlob": "e272b7e4cad50b87e0161412ee51ba2da63e57ba",
+        "bytes": 72
+      },
+      {
+        "path": "styles/scss/_variables.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/_variables.scss",
+        "gitBlob": "1fd1b12cbcd146b79a247bd76768d701128a0f97",
+        "bytes": 1839
+      },
+      {
+        "path": "styles/scss/application.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/application.scss",
+        "gitBlob": "d0ff034b61ed9c2f321630ffcfff344b991e63ad",
+        "bytes": 29759
+      },
+      {
+        "path": "styles/scss/cke-contents.scss",
+        "targetPath": "modules/h5peditor/h5peditor/styles/scss/cke-contents.scss",
+        "gitBlob": "7d4e9a3f3330dfb603df8fbd8626deb572f7835d",
+        "bytes": 343
+      },
+      {
+        "path": "webpack.config.js",
+        "targetPath": "modules/h5peditor/h5peditor/webpack.config.js",
+        "gitBlob": "80d41467aee6edf8fcda02804c679fd25e6d3029",
+        "bytes": 2133
+      }
+    ],
+    "assetEntryPoints": {
+      "scripts": [
+        "scripts/h5p-hub-client.js",
+        "scripts/h5peditor.js",
+        "scripts/h5peditor-semantic-structure.js",
+        "scripts/h5peditor-editor.js",
+        "scripts/h5peditor-library-selector.js",
+        "scripts/h5peditor-fullscreen-bar.js",
+        "scripts/h5peditor-form.js",
+        "scripts/h5peditor-text.js",
+        "scripts/h5peditor-html.js",
+        "scripts/h5peditor-number.js",
+        "scripts/h5peditor-textarea.js",
+        "scripts/h5peditor-file-uploader.js",
+        "scripts/h5peditor-file.js",
+        "scripts/h5peditor-image.js",
+        "scripts/h5peditor-image-popup.js",
+        "scripts/h5peditor-av.js",
+        "scripts/h5peditor-group.js",
+        "scripts/h5peditor-boolean.js",
+        "scripts/h5peditor-list.js",
+        "scripts/h5peditor-list-editor.js",
+        "scripts/h5peditor-library.js",
+        "scripts/h5peditor-library-list-cache.js",
+        "scripts/h5peditor-select.js",
+        "scripts/h5peditor-selector-hub.js",
+        "scripts/h5peditor-selector-legacy.js",
+        "scripts/h5peditor-dimensions.js",
+        "scripts/h5peditor-coordinates.js",
+        "scripts/h5peditor-none.js",
+        "scripts/h5peditor-metadata.js",
+        "scripts/h5peditor-metadata-author-widget.js",
+        "scripts/h5peditor-metadata-changelog-widget.js",
+        "scripts/h5peditor-pre-save.js",
+        "ckeditor/ckeditor.js"
+      ],
+      "styles": [
+        "libs/cropper.css",
+        "styles/css/h5p-hub-client.css",
+        "styles/css/fonts.css",
+        "styles/css/application.css",
+        "styles/css/libs/zebra_datepicker.min.css"
+      ]
+    },
+    "additionalDynamicAssets": [
+      "libs/cropper.js",
+      "images/cropper/*",
+      "language/*.js",
+      "styles/css/*.png",
+      "styles/css/fonts/*"
+    ]
+  },
+  "ckeditor": {
+    "generation": 5,
+    "version": "43.3.0",
+    "implementation": "H5P ClassicEditor custom build",
+    "requiredBySelectedEditor": true,
+    "requiredByCoreApiAlone": false,
+    "bundlePath": "modules/h5peditor/h5peditor/ckeditor/ckeditor.js",
+    "bundleGitBlob": "7bc5a5dcbe220514c527793aef4b4dc730135a8d",
+    "sourceMapGitBlob": "d7c5121714c03784d0564a96d1dfb065608a9571",
+    "sourcePath": "ckeditor5/src/ckeditor.ts",
+    "packageJsonGitBlob": "1e8876de47abe6a82595def44540da88b518c7dd",
+    "packageLockGitBlob": "c7385cfe14ebc60a0ac2d67fb9470ae88d5cb888",
+    "customTable": {
+      "repository": "https://github.com/h5p/h5p-ckeditor-table",
+      "tag": "0.0.14",
+      "commit": "ab4ebd330013b6ed1b8aae5fc7123ff148e8ebd8"
+    }
+  },
+  "imageCropper": {
+    "repository": "https://github.com/h5p/h5p-image-cropper",
+    "packageVersion": "1.0.0",
+    "commit": "09d0960367fd89e0581539ee8fb8366fd918ab05",
+    "bundleGitBlob": "dd7b143eeb1e8bb517d5b1e7905f6e972c8d3b25",
+    "cssGitBlob": "dbeed421b04cf45a2404e0a28f3e83f974b28627",
+    "editorBuildLockGitBlob": "4b22e0a1c3344e4b55d5914eb1030705782508e3"
+  },
+  "otherAssets": {
+    "h5pJQuery": {
+      "version": "3.5.1",
+      "gitBlob": "4f34d7590ccc8a13a265c8b965d84317d00179c0"
+    },
+    "zebraDatepicker": {
+      "version": "1.9.11",
+      "editorBuildLockGitBlob": "4b22e0a1c3344e4b55d5914eb1030705782508e3"
+    }
+  },
+  "acquisitionRules": [
+    "Use full commits, not moving branches.",
+    "Use the committed compiled assets from the same editor/core revision. Do not rebuild or install packages for this upgrade.",
+    "Retain license notices and referenced binary/font/image assets.",
+    "The full upstream tree inventory is a source reference, not authorization to import CI or overwrite Backdrop adapters.",
+    "Composer metadata records upstream requirements; no Composer update/install is needed or authorized in Phase 1."
+  ]
+}
