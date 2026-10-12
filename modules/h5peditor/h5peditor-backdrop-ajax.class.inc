@@ -42,6 +42,10 @@ class H5PEditorBackdropAjax implements H5PEditorAjaxInterface {
       AND hl4.minor_version = hl3.minor_version
     ")->fetchAll();
 
+    // Supply the new editor's field without querying a nonexistent DB column.
+    foreach ($local_libraries as $library) {
+      $library->patch_version_in_folder_name = FALSE;
+    }
     return $local_libraries;
   }
 

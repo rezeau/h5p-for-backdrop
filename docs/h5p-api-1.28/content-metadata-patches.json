@@ -1,0 +1,57 @@
+{
+  "scope": "Content submission and package-import metadata guards; no vendor changes",
+  "files": {
+    "h5p.module": {
+      "beforeSha256": "fc4991502c06cabdf0664ae74d5d984e83057b335752731d19e4455fd731ea1d",
+      "afterSha256": "48a805a13b94a3f613e06e5a44af10749c536c0788f6e281352e85b8accd3032",
+      "replacements": [
+        {
+          "before": "    $form_state['values']['json_content'] = json_encode($json_content->params);\n    $form_state['values']['metadata'] = $json_content->metadata;",
+          "after": "    if (!($json_content instanceof stdClass) || !property_exists($json_content, 'params')) {\n      throw new UnexpectedValueException('H5P submission must contain a JSON object with params.');\n    }\n    // Metadata is optional. Keep existing values when an editor omits it.\n    $metadata = $json_content->metadata ?? ($form_state['values']['metadata'] ?? ($form['#node']->metadata ?? NULL));\n    $metadata = H5PBackdrop::normalizeContentMetadata($metadata);\n    $form_state['values']['json_content'] = json_encode($json_content->params);\n    $form_state['values']['metadata'] = $metadata;"
+        },
+        {
+          "before": "/**\n * Implements hook_insert().\n */\nfunction h5p_insert($node) {",
+          "after": "/**\n * Build content data for an already validated uploaded package.\n *\n * Core storage reads content.json but does not copy h5p.json metadata.\n */\nfunction _h5p_get_uploaded_content($node) {\n  $core = _h5p_get_instance('core');\n  return array(\n    'id' => h5p_get_content_id($node),\n    'title' => $node->title,\n    'disable' => $node->disable,\n    'metadata' => H5PBackdrop::normalizeContentMetadata($core->mainJsonData),\n  );\n}\n\n/**\n * Implements hook_insert().\n */\nfunction h5p_insert($node) {"
+        },
+        {
+          "before": "    $h5p_core->savePackage(h5p_get_content_id($node), $node->nid, FALSE, array(\n      'disable' => $node->disable,\n      'title' => $node->title,\n    ));",
+          "after": "    $h5p_core->savePackage(_h5p_get_uploaded_content($node), $node->nid, FALSE);"
+        },
+        {
+          "before": "      'metadata' => $node->metadata,",
+          "after": "      'metadata' => isset($node->metadata) ? $node->metadata : NULL,"
+        },
+        {
+          "before": "      // Use newly uploaded package\n      $h5p_storage->savePackage($node->vid, $node->nid, FALSE, array('disable' => $node->disable));",
+          "after": "      // Use newly uploaded package\n      $h5p_storage->savePackage(_h5p_get_uploaded_content($node), $node->nid, FALSE);"
+        },
+        {
+          "before": "      // Replace old package\n      $h5p_storage = _h5p_get_instance('storage');\n      $h5p_storage->savePackage(array(\n        'id' => h5p_get_content_id($node),\n        'title' => $node->title,\n        'disable' => $node->disable,\n      ), $node->nid, FALSE);",
+          "after": "      // Replace old package\n      $h5p_storage = _h5p_get_instance('storage');\n      $h5p_storage->savePackage(_h5p_get_uploaded_content($node), $node->nid, FALSE);"
+        }
+      ]
+    },
+    "h5p.classes.inc": {
+      "beforeSha256": "dc2bf4e233aef7542e0a8126d931ad182ec34dc69bd41858ac7774c6d5266578",
+      "afterSha256": "54e08f32d087fa2595966a56e13488c7ba612d9f706badd3627ebd3a60b9e5b6",
+      "replacements": [
+        {
+          "before": "  /**\n   * Implements updateContent\n   */",
+          "after": "  /**\n   * Normalize optional structured metadata without accepting malformed scalars.\n   */\n  public static function normalizeContentMetadata($metadata) {\n    if ($metadata === NULL) {\n      return array();\n    }\n    if ($metadata instanceof stdClass) {\n      $metadata = (array) $metadata;\n    }\n    if (!is_array($metadata)) {\n      throw new UnexpectedValueException('H5P content metadata must be an object or associative array.');\n    }\n    foreach (array_keys($metadata) as $key) {\n      if (!is_string($key)) {\n        throw new UnexpectedValueException('H5P content metadata must use named fields.');\n      }\n    }\n    return $metadata;\n  }\n\n  /**\n   * Implements updateContent\n   */"
+        },
+        {
+          "before": "  public function updateContent($content, $contentMainId = NULL) {\n    $content_id",
+          "after": "  public function updateContent($content, $contentMainId = NULL) {\n    $metadata = isset($content['metadata']) ? self::normalizeContentMetadata($content['metadata']) : NULL;\n    $content_id"
+        },
+        {
+          "before": "    $fields = array_merge(H5PMetadata::toDBArray($content['metadata'], false), array(\n      'json_content'",
+          "after": "    // Omitted metadata must not clear existing optional database fields.\n    $fields = array_merge($metadata === NULL ? array() : H5PMetadata::toDBArray($metadata, false), array(\n      'json_content'"
+        },
+        {
+          "before": "    $fields = array_merge(H5PMetadata::toDBArray($content['metadata'], false), array(\n      'content_id'",
+          "after": "    $metadata = self::normalizeContentMetadata($content['metadata'] ?? NULL);\n    $fields = array_merge(H5PMetadata::toDBArray($metadata, false), array(\n      'content_id'"
+        }
+      ]
+    }
+  }
+}

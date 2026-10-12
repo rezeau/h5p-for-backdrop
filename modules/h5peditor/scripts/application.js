@@ -26,6 +26,7 @@ var ns = H5PEditor;
     ns.editorRelUrl = Backdrop.settings.h5peditor.editorRelUrl;
     ns.apiVersion = Backdrop.settings.h5peditor.apiVersion;
     ns.contentLanguage = Backdrop.settings.h5peditor.language;
+    ns.uiLanguage = Backdrop.settings.h5peditor.uiLanguage;
 
     // Semantics describing what copyright information can be stored for media.
     ns.copyrightSemantics = Backdrop.settings.h5peditor.copyrightSemantics;
@@ -50,7 +51,11 @@ var ns = H5PEditor;
       else {
         $upload.hide();
         if (h5peditor === undefined) {
-          h5peditor = new ns.Editor(library, $params.val(), $editor[0]);
+          h5peditor = new ns.Editor(library, $params.val(), $editor[0], function () {
+            // This callback runs in the iframe before selectors and forms.
+            this.H5PBackdropEditorCompatibility.installNestedLanguageUpdates(this.H5PEditor);
+            this.H5PBackdropEditorCompatibility.installRichTextLanguage(this.H5PEditor);
+          });
         }
         $create.show();
       }

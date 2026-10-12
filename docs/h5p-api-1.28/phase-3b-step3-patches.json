@@ -1,0 +1,51 @@
+{
+  "editorCommit": "73dfed6073b8916faa7e8b1a5fca5adb2bde5dc4",
+  "files": {
+    "modules/h5peditor/h5peditor.module": {
+      "beforeSha256": "bd3666f33ee51c7f7a54859f72b98a5a27d82f408fc27cb685bd5382e4ba6dfc",
+      "afterSha256": "81174516a04f7846a01e63ad108945745147d46b8b121cec19a36c222cdf257f",
+      "replacements": [
+        {
+          "before": "  $cache_buster = '?' . state_get('css_js_query_string', '');",
+          "after": "  // Pin editor requests without changing the site's cache state.\n  $editor_version = '73dfed6073b8-backdrop-1';\n  $cache_buster = '?' . state_get('css_js_query_string', '') . '&h5p_editor=' . $editor_version;\n  $ui_language = $language->langcode === 'fr' ? 'fr' : 'en';"
+        },
+        {
+          "before": "  backdrop_add_js($h5peditor_module_path . '/h5peditor/scripts/h5peditor-editor.js');\n  backdrop_add_js($h5peditor_module_path . '/scripts/application.js');",
+          "after": "  // CKEditor translations and compatibility belong inside the editor iframe.\n  if ($ui_language === 'fr') {\n    $assets['js'][] = base_path() . $h5peditor_module_path . '/h5peditor/ckeditor/translations/fr.js' . $cache_buster;\n  }\n  $assets['js'][] = base_path() . $h5peditor_module_path . '/scripts/h5peditor-backdrop-compat.js' . $cache_buster;\n  $editor_js_options = array('preprocess' => FALSE, 'version' => $editor_version);\n  backdrop_add_js($h5peditor_module_path . '/h5peditor/scripts/h5peditor-editor.js', $editor_js_options);\n  backdrop_add_js($h5peditor_module_path . '/scripts/application.js', $editor_js_options);"
+        },
+        {
+          "before": "      'language' => $language->langcode,",
+          "after": "      'language' => $language->langcode,\n      'uiLanguage' => $ui_language,"
+        }
+      ]
+    },
+    "modules/h5peditor/scripts/application.js": {
+      "beforeSha256": "26a54d8fa46ff201c1ba5fbeac93dc5fbed53337866a2fb77cf1b8a365992804",
+      "afterSha256": "2125d608423d6335dcbe1a65ba4db4dac90b941484afd86a37ed4cfe77fdde80",
+      "replacements": [
+        {
+          "before": "    ns.contentLanguage = Backdrop.settings.h5peditor.language;",
+          "after": "    ns.contentLanguage = Backdrop.settings.h5peditor.language;\n    ns.uiLanguage = Backdrop.settings.h5peditor.uiLanguage;"
+        },
+        {
+          "before": "          h5peditor = new ns.Editor(library, $params.val(), $editor[0]);",
+          "after": "          h5peditor = new ns.Editor(library, $params.val(), $editor[0], function () {\n            // This callback runs in the iframe before selectors and forms.\n            this.H5PBackdropEditorCompatibility.installNestedLanguageUpdates(this.H5PEditor);\n            this.H5PBackdropEditorCompatibility.installRichTextLanguage(this.H5PEditor);\n          });"
+        }
+      ]
+    },
+    "modules/h5peditor/scripts/h5peditor-backdrop-compat.js": {
+      "beforeSha256": "8e8cde4a6d43d8518759bcc3b14894d05431d78e2fffc4cd564be4fa79a41887",
+      "afterSha256": "5f735f2d66d344117c3d7f36f85600b22b3b93e8a21367247746c6d45e3c02cf",
+      "replacements": [
+        {
+          "before": " * Explicit compatibility installer for the pinned editor. Not loaded yet.",
+          "after": " * Explicit iframe compatibility installers for the pinned editor."
+        },
+        {
+          "before": "  var compatibility = { installNestedLanguageUpdates: installNestedLanguageUpdates };",
+          "after": "  function installRichTextLanguage(editor) {\n    if (!editor || !editor.Html || !editor.Html.prototype ||\n        typeof editor.Html.prototype.getCKEditorConfig !== 'function') {\n      throw new Error('Load the H5P HTML widget before installing rich-text language compatibility.');\n    }\n    var prototype = editor.Html.prototype;\n    var original = prototype.getCKEditorConfig;\n    if (original.backdropRichTextLanguageAdapter === true) {\n      return false;\n    }\n    function getConfig() {\n      var config = original.call(this);\n      config.language = {\n        ui: editor.uiLanguage === 'fr' ? 'fr' : 'en',\n        content: editor.defaultLanguage || editor.contentLanguage || 'en'\n      };\n      return config;\n    }\n    getConfig.backdropRichTextLanguageAdapter = true;\n    prototype.getCKEditorConfig = getConfig;\n    return true;\n  }\n\n  var compatibility = {\n    installNestedLanguageUpdates: installNestedLanguageUpdates,\n    installRichTextLanguage: installRichTextLanguage\n  };"
+        }
+      ]
+    }
+  }
+}

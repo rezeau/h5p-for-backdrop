@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "scope": "Phase 3B Step 2: Backdrop-only compatibility; vendor/runtime assets unchanged",
+  "files": {
+    "h5p.module": {
+      "beforeSha256": "a8b0195e6e089441210da9f1a872803f2df096e8d68672e81ce92cd622301ba7",
+      "afterSha256": "fc4991502c06cabdf0664ae74d5d984e83057b335752731d19e4455fd731ea1d",
+      "replacements": [
+        {
+          "before": "    $fs = new H5PDefaultStorage(",
+          "after": "    $fs = new H5PBackdropFileStorage("
+        },
+        {
+          "before": "    'H5PDefaultStorage' => 'library/h5p-default-storage.class.php',",
+          "after": "    'H5PDefaultStorage' => 'library/h5p-default-storage.class.php',\n    'H5PBackdropFileStorage' => 'h5p-backdrop-file-storage.class.inc',"
+        }
+      ]
+    },
+    "h5p.classes.inc": {
+      "beforeSha256": "e273566dc3ee4054609a04cbd53d8472426107db50de1080eab10311d97fae16",
+      "afterSha256": "dc2bf4e233aef7542e0a8126d931ad182ec34dc69bd41858ac7774c6d5266578",
+      "replacements": [
+        {
+          "before": "    $library = H5PCore::snakeToCamel($library);\n\n    $result = db_query(",
+          "after": "    $library = H5PCore::snakeToCamel($library);\n    // Backdrop stores libraries in major/minor folders, without a schema flag.\n    $library['patchVersionInFolderName'] = FALSE;\n\n    $result = db_query("
+        }
+      ]
+    },
+    "modules/h5peditor/h5peditor-backdrop-storage.class.inc": {
+      "beforeSha256": "e49b29e9c3caeebe95838c749f6ae1dbd25f39974e122106830ce8881b05ba10",
+      "afterSha256": "8040019c6707cd3077bbb4185ef5265ee3f5b48fd8a3baed8feb089932d416fd",
+      "replacements": [
+        {
+          "before": "          $library->metadataSettings = (!empty($details->metadata_settings)) ? json_decode($details->metadata_settings) : NULL;",
+          "after": "          $library->metadataSettings = (!empty($details->metadata_settings)) ? json_decode($details->metadata_settings) : NULL;\n          $library->patchVersionInFolderName = FALSE;"
+        },
+        {
+          "before": "      $library = H5PCore::snakeToCamel($library, true);",
+          "after": "      $library = H5PCore::snakeToCamel($library, true);\n      $library->patchVersionInFolderName = FALSE;"
+        }
+      ]
+    },
+    "modules/h5peditor/h5peditor-backdrop-ajax.class.inc": {
+      "beforeSha256": "65c8f842ec33e49128de55274e1bae55bfc40ef424cf84695a9c423ecc299518",
+      "afterSha256": "148965fda446f16f0f1d9668733b910c56d6d9a89736fcb93a514fa2ee0fb751",
+      "replacements": [
+        {
+          "before": "    return $local_libraries;",
+          "after": "    // Supply the new editor's field without querying a nonexistent DB column.\n    foreach ($local_libraries as $library) {\n      $library->patch_version_in_folder_name = FALSE;\n    }\n    return $local_libraries;"
+        }
+      ]
+    }
+  },
+  "newFiles": {
+    "h5p-backdrop-file-storage.class.inc": "bbc80241f71392ec0e77e377bbe392139d3b448a41f22b6dea9cdacc70fbeadc",
+    "modules/h5peditor/scripts/h5peditor-backdrop-compat.js": "8e8cde4a6d43d8518759bcc3b14894d05431d78e2fffc4cd564be4fa79a41887"
+  }
+}

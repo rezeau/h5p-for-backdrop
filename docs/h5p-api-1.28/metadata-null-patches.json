@@ -1,0 +1,19 @@
+{
+  "scope": "Optional editor metadata NULL/empty guards; exact vendor files unchanged",
+  "files": {
+    "modules/h5peditor/h5peditor-backdrop-storage.class.inc": {
+      "beforeSha256": "8040019c6707cd3077bbb4185ef5265ee3f5b48fd8a3baed8feb089932d416fd",
+      "afterSha256": "85440f020c69b0a4bc7a0ee620b2da7b28818a630d4aad3ac127481e4bc47fc3",
+      "replacements": [
+        {
+          "before": "          $library->metadataSettings = (!empty($details->metadata_settings)) ? json_decode($details->metadata_settings) : NULL;",
+          "after": "          $library->metadataSettings = ($details->metadata_settings === NULL || $details->metadata_settings === '') ? NULL : json_decode($details->metadata_settings);"
+        },
+        {
+          "before": "      $library->metadataSettings = json_decode($library->metadataSettings);",
+          "after": "      $library->metadataSettings = ($library->metadataSettings === NULL || $library->metadataSettings === '') ? NULL : json_decode($library->metadataSettings);"
+        }
+      ]
+    }
+  }
+}

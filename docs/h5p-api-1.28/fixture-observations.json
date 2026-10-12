@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "observedOn": "2026-10-11",
+  "explanation": "User confirmed that the working site regenerated these three exports during the session. Tests read originals and validate disposable copies; before/after hashes match. Frozen Phase 1 hashes are retained.",
+  "files": [
+    {
+      "file": "advanced-fill-the-blanks-papijo-3-20.h5p",
+      "path": "C:/wamp64/www/backdrop/files/h5p/exports/advanced-fill-the-blanks-papijo-3-20.h5p",
+      "baselineSha256": "0b01c77b9480732895d56fda60e73cdb05d034d8d67d115c6a274736642bb800",
+      "observedSha256": "beadeb9726814ab54e360b98d8ced2e2dff8eb5f2de5f78b7c6368588c91d482",
+      "baselineBytes": 791563,
+      "observedBytes": 791563,
+      "observedLastWriteTime": "2026-10-11T15:43:38.2753171+02:00"
+    },
+    {
+      "file": "advanced-fill-the-blanks-papijo-francais-21.h5p",
+      "path": "C:/wamp64/www/backdrop/files/h5p/exports/advanced-fill-the-blanks-papijo-francais-21.h5p",
+      "baselineSha256": "399e8b8047ce0c848b2d17c2cd887512a30e03ac52dabc0438f7ee137fa4e9f3",
+      "observedSha256": "d788d9e1fc74152b7e9b709668783fac0bbc85b89ec1d6f212fc7a924068a71a",
+      "baselineBytes": 791569,
+      "observedBytes": 791569,
+      "observedLastWriteTime": "2026-10-11T15:43:39.4256060+02:00"
+    },
+    {
+      "file": "vrai-ou-faux-fr-2-23.h5p",
+      "path": "C:/wamp64/www/backdrop/files/h5p/exports/vrai-ou-faux-fr-2-23.h5p",
+      "baselineSha256": "ab04d0061a8f94a24957cfb6b1aea36d0ed5150d869e311b285eb097b26b21cb",
+      "observedSha256": "f45d4dfdde0f6657f318520e7d984905a7e7ccd26221ccc66f51a5589172dffe",
+      "baselineBytes": 707846,
+      "observedBytes": 707846,
+      "observedLastWriteTime": "2026-10-11T15:43:40.3152686+02:00"
+    }
+  ]
+}

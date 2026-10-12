@@ -506,8 +506,14 @@ function _h5p_form_submit($form, &$form_state) {
     unset($form_state['values']['json_content']);
   }
   else {
+    if (!($json_content instanceof stdClass) || !property_exists($json_content, 'params')) {
+      throw new UnexpectedValueException('H5P submission must contain a JSON object with params.');
+    }
+    // Metadata is optional. Keep existing values when an editor omits it.
+    $metadata = $json_content->metadata ?? ($form_state['values']['metadata'] ?? ($form['#node']->metadata ?? NULL));
+    $metadata = H5PBackdrop::normalizeContentMetadata($metadata);
     $form_state['values']['json_content'] = json_encode($json_content->params);
-    $form_state['values']['metadata'] = $json_content->metadata;
+    $form_state['values']['metadata'] = $metadata;
   }
 
   if (!empty($_SESSION['h5p_upload'])) { // Legacy upload active
@@ -589,15 +595,27 @@ function h5p_validate($node, &$form) {
 }
 
 /**
+ * Build content data for an already validated uploaded package.
+ *
+ * Core storage reads content.json but does not copy h5p.json metadata.
+ */
+function _h5p_get_uploaded_content($node) {
+  $core = _h5p_get_instance('core');
+  return array(
+    'id' => h5p_get_content_id($node),
+    'title' => $node->title,
+    'disable' => $node->disable,
+    'metadata' => H5PBackdrop::normalizeContentMetadata($core->mainJsonData),
+  );
+}
+
+/**
  * Implements hook_insert().
  */
 function h5p_insert($node) {
   if (isset($_SESSION['h5p_upload'])) {
     $h5p_core = _h5p_get_instance('storage');
-    $h5p_core->savePackage(h5p_get_content_id($node), $node->nid, FALSE, array(
-      'disable' => $node->disable,
-      'title' => $node->title,
-    ));
+    $h5p_core->savePackage(_h5p_get_uploaded_content($node), $node->nid, FALSE);
   }
   else {
     if (!isset($node->main_library['name'])) {
@@ -630,7 +648,7 @@ function h5p_insert($node) {
       'id' => h5p_get_content_id($node),
       'title' => $node->title,
       'params' => $node->json_content,
-      'metadata' => $node->metadata,
+      'metadata' => isset($node->metadata) ? $node->metadata : NULL,
       'embed_type' => $node->embed_type,
       'disable' => $node->disable,
       'library' => $lib,
@@ -648,7 +666,7 @@ function h5p_update($node) {
     $h5p_storage = _h5p_get_instance('storage');
     if (isset($_SESSION['h5p_upload'])) {
       // Use newly uploaded package
-      $h5p_storage->savePackage($node->vid, $node->nid, FALSE, array('disable' => $node->disable));
+      $h5p_storage->savePackage(_h5p_get_uploaded_content($node), $node->nid, FALSE);
     }
     else {
       // Copy old package
@@ -661,11 +679,7 @@ function h5p_update($node) {
     if (isset($_SESSION['h5p_upload'])) {
       // Replace old package
       $h5p_storage = _h5p_get_instance('storage');
-      $h5p_storage->savePackage(array(
-        'id' => h5p_get_content_id($node),
-        'title' => $node->title,
-        'disable' => $node->disable,
-      ), $node->nid, FALSE);
+      $h5p_storage->savePackage(_h5p_get_uploaded_content($node), $node->nid, FALSE);
     }
     else {
       h5p_insert($node);
@@ -1145,7 +1159,7 @@ function h5p_get_content_settings($content) {
  * @see http://drupal.org/node/1354
  */
 function h5p_get_resize_url() {
-  return url(backdrop_get_path('module', 'h5p') . '/library/js/h5p-resizer.js', array('absolute' => TRUE, 'language' => (object) array('language' => FALSE)));
+  return url(backdrop_get_path('module', 'h5p') . '/library/js/h5p-resizer.js', array('absolute' => TRUE, 'language' => (object) array('langcode' => FALSE)));
 }
 
 /**
@@ -1356,7 +1370,7 @@ function _h5p_get_instance($type) {
 
   if (!isset($interface)) {
     $interface = new H5PBackdrop();
-    $fs = new H5PDefaultStorage(_h5p_get_h5p_path(), file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath() . DIRECTORY_SEPARATOR . 'h5peditor');
+    $fs = new H5PBackdropFileStorage(_h5p_get_h5p_path(), file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath() . DIRECTORY_SEPARATOR . 'h5peditor');
     $core = new H5PCore($interface, $fs, base_path(), $language->langcode, ($config->get('h5p_export') ? TRUE : FALSE));
 
     // Override regex for converting copied files paths
@@ -1763,6 +1777,7 @@ function h5p_autoload_info() {
     'H5PBackdrop' => 'h5p.classes.inc',
     'H5PEvent' => 'h5p.event.inc',
     'H5PDefaultStorage' => 'library/h5p-default-storage.class.php',
+    'H5PBackdropFileStorage' => 'h5p-backdrop-file-storage.class.inc',
     'H5PDevelopment' => 'library/h5p-development.class.php',
     'H5PEventBase' => 'library/h5p-event-base.class.php',
     'H5PFileStorage' => 'library/h5p-file-storage.interface.php',

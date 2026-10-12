@@ -213,7 +213,10 @@ function h5peditor_h5p_content_node_form_after_build($form) {
   h5p_add_files_and_settings(TRUE, TRUE); // Force integration
 
   $h5peditor_module_path = backdrop_get_path('module', 'h5peditor');
-  $cache_buster = '?' . state_get('css_js_query_string', '');
+  // Pin editor requests without changing the site's cache state.
+  $editor_version = '73dfed6073b8-backdrop-1';
+  $cache_buster = '?' . state_get('css_js_query_string', '') . '&h5p_editor=' . $editor_version;
+  $ui_language = $language->langcode === 'fr' ? 'fr' : 'en';
 
   // Add our own styles
   foreach (H5peditor::$styles as $style) {
@@ -227,8 +230,14 @@ function h5peditor_h5p_content_node_form_after_build($form) {
       $assets['js'][] = base_path() . $h5peditor_module_path . '/h5peditor/' . $script . $cache_buster;
     }
   }
-  backdrop_add_js($h5peditor_module_path . '/h5peditor/scripts/h5peditor-editor.js');
-  backdrop_add_js($h5peditor_module_path . '/scripts/application.js');
+  // CKEditor translations and compatibility belong inside the editor iframe.
+  if ($ui_language === 'fr') {
+    $assets['js'][] = base_path() . $h5peditor_module_path . '/h5peditor/ckeditor/translations/fr.js' . $cache_buster;
+  }
+  $assets['js'][] = base_path() . $h5peditor_module_path . '/scripts/h5peditor-backdrop-compat.js' . $cache_buster;
+  $editor_js_options = array('preprocess' => FALSE, 'version' => $editor_version);
+  backdrop_add_js($h5peditor_module_path . '/h5peditor/scripts/h5peditor-editor.js', $editor_js_options);
+  backdrop_add_js($h5peditor_module_path . '/scripts/application.js', $editor_js_options);
 
   // Add translation
   $language_file = $h5peditor_module_path . '/h5peditor/language/' . $language->langcode . '.js';
@@ -264,6 +273,7 @@ function h5peditor_h5p_content_node_form_after_build($form) {
       'editorRelUrl' => '../../../h5peditor/',
       'apiVersion' => H5PCore::$coreApi,
       'language' => $language->langcode,
+      'uiLanguage' => $ui_language,
       'hub' => array(
         'contentSearchUrl' => H5PHubEndpoints::createURL(H5PHubEndpoints::CONTENT) . '/search',
       ),

@@ -118,7 +118,8 @@ class H5peditorBackdropStorage implements H5peditorStorage {
           $library->title = $details->title;
           $library->runnable = $details->runnable;
           $library->restricted = $super_user ? FALSE : ($details->restricted === '1' ? TRUE : FALSE);
-          $library->metadataSettings = (!empty($details->metadata_settings)) ? json_decode($details->metadata_settings) : NULL;
+          $library->metadataSettings = ($details->metadata_settings === NULL || $details->metadata_settings === '') ? NULL : json_decode($details->metadata_settings);
+          $library->patchVersionInFolderName = FALSE;
           $librariesWithDetails[] = $library;
         }
       }
@@ -143,8 +144,9 @@ class H5peditorBackdropStorage implements H5peditorStorage {
     foreach ($libraries_result as $library) {
       // Convert result object properties to camelCase.
       $library = H5PCore::snakeToCamel($library, true);
+      $library->patchVersionInFolderName = FALSE;
 
-      $library->metadataSettings = json_decode($library->metadataSettings);
+      $library->metadataSettings = ($library->metadataSettings === NULL || $library->metadataSettings === '') ? NULL : json_decode($library->metadataSettings);
 
       // Make sure we only display the newest version of a library.
       foreach ($libraries as $existingLibrary) {

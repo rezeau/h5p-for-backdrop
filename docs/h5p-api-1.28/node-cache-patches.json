@@ -1,0 +1,15 @@
+{
+  "scope": "Targeted Backdrop static/persistent node-cache invalidation after H5P field persistence; no vendor changes",
+  "files": {
+    "h5p.classes.inc": {
+      "replacements": [
+        {
+          "before": "\n  }\n\n  /**\n   * Will clear filtered params",
+          "after": "\n\n    // hook_load() copies these fields into Backdrop's cached node. Content IDs\n    // may be revision IDs, so resolve the owning node instead of assuming nid.\n    $nid = db_query('SELECT nid FROM {h5p_nodes} WHERE content_id = :id', array(':id' => $id))->fetchField();\n    if ($nid) {\n      entity_get_controller('node')->resetCache(array($nid));\n    }\n  }\n\n  /**\n   * Will clear filtered params"
+        }
+      ],
+      "beforeSha256": "54e08f32d087fa2595966a56e13488c7ba612d9f706badd3627ebd3a60b9e5b6",
+      "afterSha256": "8d148a574cac325ab6738e9a3b53a2288956ef5d7d10d41e355be93366a6184a"
+    }
+  }
+}
