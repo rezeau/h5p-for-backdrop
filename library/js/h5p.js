@@ -23,7 +23,7 @@ H5P.$window = H5P.jQuery(window);
 H5P.instances = [];
 
 // Detect if we support fullscreen, and what prefix to use.
-if (document.documentElement.requestFullScreen) {
+if (document.documentElement.requestFullscreen) {
   /**
    * Browser prefix to use when entering fullscreen mode.
    * undefined means no fullscreen support.
@@ -104,6 +104,10 @@ H5P.init = function (target) {
       metadata: contentData.metadata
     };
 
+    // Apply theme density
+    let density = H5PIntegration.theme?.density ?? 'large';
+    $element.addClass('h5p-' + density);
+
     H5P.getUserData(contentId, 'state', function (err, previousState) {
       if (previousState) {
         library.userDatas = {
@@ -182,7 +186,11 @@ H5P.init = function (target) {
       var $actions = actionBar.getDOMElement();
 
       actionBar.on('reuse', function () {
-        H5P.openReuseDialog($actions, contentData, library, instance, contentId);
+        H5P.openReuseDialog($actions, contentData, {
+          library: contentData.library,
+          params: JSON.parse(contentData.jsonContent),
+          metadata: contentData.metadata
+        }, instance, contentId);
         instance.triggerXAPI('accessed-reuse');
       });
       actionBar.on('copyrights', function () {
@@ -349,13 +357,7 @@ H5P.init = function (target) {
     if (!H5P.isFramed || H5P.externalEmbed === false) {
       // Resize everything when window is resized.
       H5P.jQuery(window.parent).resize(function () {
-        if (window.parent.H5P.isFullscreen) {
-          // Use timeout to avoid bug in certain browsers when exiting fullscreen. Some browser will trigger resize before the fullscreenchange event.
-          H5P.trigger(instance, 'resize');
-        }
-        else {
-          H5P.trigger(instance, 'resize');
-        }
+        H5P.trigger(instance, 'resize');
       });
     }
 
@@ -377,13 +379,29 @@ H5P.init = function (target) {
 
   // Insert H5Ps that should be in iframes.
   H5P.jQuery('iframe.h5p-iframe:not(.h5p-initialized)', target).each(function () {
-    var contentId = H5P.jQuery(this).addClass('h5p-initialized').data('content-id');
+    const iframe = this;
+    const $iframe = H5P.jQuery(iframe);
+
+    const contentId = $iframe.data('content-id');
     const contentData = H5PIntegration.contents['cid-' + contentId];
-    const language = contentData && contentData.metadata && contentData.metadata.defaultLanguage
+    const contentLanguage = contentData && contentData.metadata && contentData.metadata.defaultLanguage
       ? contentData.metadata.defaultLanguage : 'en';
-    this.contentDocument.open();
-    this.contentDocument.write('<!doctype html><html class="h5p-iframe" lang="' + language + '"><head>' + H5P.getHeadTags(contentId) + '</head><body><div class="h5p-content" data-content-id="' + contentId + '"/></body></html>');
-    this.contentDocument.close();
+
+    const writeDocument = function () {
+      iframe.contentDocument.open();
+      iframe.contentDocument.write('<!doctype html><html class="h5p-iframe" lang="' + contentLanguage + '"><head>' + H5P.getHeadTags(contentId) + '</head><body><div class="h5p-content" data-content-id="' + contentId + '"/></body></html>');
+      iframe.contentDocument.close();
+    };
+
+    $iframe.addClass('h5p-initialized')
+    if (iframe.contentDocument === null) {
+      // In some Edge cases the iframe isn't always loaded when the page is ready.
+      $iframe.on('load', writeDocument);
+      $iframe.attr('src', 'about:blank');
+    }
+    else {
+      writeDocument();
+    }
   });
 };
 
@@ -646,7 +664,7 @@ H5P.fullScreen = function ($element, instance, exitCallback, body, forceSemiFull
 
     before('h5p-fullscreen');
     var first, eventName = (H5P.fullScreenBrowserPrefix === 'ms' ? 'MSFullscreenChange' : H5P.fullScreenBrowserPrefix + 'fullscreenchange');
-    document.addEventListener(eventName, function () {
+    document.addEventListener(eventName, function fullscreenCallback() {
       if (first === undefined) {
         // We are entering fullscreen mode
         first = false;
@@ -656,11 +674,11 @@ H5P.fullScreen = function ($element, instance, exitCallback, body, forceSemiFull
 
       // We are exiting fullscreen
       done('h5p-fullscreen');
-      document.removeEventListener(eventName, arguments.callee, false);
+      document.removeEventListener(eventName, fullscreenCallback, false);
     });
 
     if (H5P.fullScreenBrowserPrefix === '') {
-      $element[0].requestFullScreen();
+      $element[0].requestFullscreen();
     }
     else {
       var method = (H5P.fullScreenBrowserPrefix === 'ms' ? 'msRequestFullscreen' : H5P.fullScreenBrowserPrefix + 'RequestFullScreen');
@@ -1029,13 +1047,16 @@ H5P.t = function (key, vars, ns) {
  *   Displayed inside the dialog.
  * @param {H5P.jQuery} $element
  *   Which DOM element the dialog should be inserted after.
+ * @param {H5P.jQuery} $returnElement
+ *   Which DOM element the focus should be moved to on close
  */
-H5P.Dialog = function (name, title, content, $element) {
+H5P.Dialog = function (name, title, content, $element, $returnElement) {
   /** @alias H5P.Dialog# */
   var self = this;
-  var $dialog = H5P.jQuery('<div class="h5p-popup-dialog h5p-' + name + '-dialog" role="dialog" tabindex="-1">\
+  this.activeElement = document.activeElement;
+  var $dialog = H5P.jQuery('<div class="h5p-popup-dialog h5p-' + name + '-dialog" aria-labelledby="' + name + '-dialog-header" aria-modal="true" role="dialog" tabindex="-1">\
                               <div class="h5p-inner">\
-                                <h2>' + title + '</h2>\
+                                <h2 id="' + name + '-dialog-header">' + title + '</h2>\
                                 <div class="h5p-scroll-content">' + content + '</div>\
                                 <div class="h5p-close" role="button" tabindex="0" aria-label="' + H5P.t('close') + '" title="' + H5P.t('close') + '"></div>\
                               </div>\
@@ -1094,7 +1115,15 @@ H5P.Dialog = function (name, title, content, $element) {
       $dialog.remove();
       H5P.jQuery(self).trigger('dialog-closed', [$dialog]);
       $element.attr('tabindex', '-1');
-      $element.focus();
+      if ($returnElement) {
+        $returnElement.focus();
+      }
+      else if(self.activeElement) {
+        self.activeElement.focus();
+      }
+      else {
+        $element.focus();
+      }
     }, 200);
   };
 };
@@ -1227,7 +1256,7 @@ H5P.findCopyrights = function (info, parameters, contentId, extras) {
           const path = data.params.file.path;
           const width = data.params.file.width;
           const height = data.params.file.height;
-          metadataCopyrights.setThumbnail(new H5P.Thumbnail(H5P.getPath(path, contentId), width, height));
+          metadataCopyrights.setThumbnail(new H5P.Thumbnail(H5P.getPath(path, contentId), width, height, data.params.alt));
         }
         info.addMedia(metadataCopyrights);
       }
@@ -1268,20 +1297,25 @@ H5P.buildMetadataCopyrights = function (metadata) {
  */
 H5P.openReuseDialog = function ($element, contentData, library, instance, contentId) {
   let html = '';
+  let buttonCount = 0;
   if (contentData.displayOptions.export) {
     html += '<button type="button" class="h5p-big-button h5p-download-button"><div class="h5p-button-title">Download as an .h5p file</div><div class="h5p-button-description">.h5p files may be uploaded to any web-site where H5P content may be created.</div></button>';
+    buttonCount += 1;
   }
   if (contentData.displayOptions.export && contentData.displayOptions.copy) {
     html += '<div class="h5p-horizontal-line-text"><span>or</span></div>';
   }
   if (contentData.displayOptions.copy) {
     html += '<button type="button" class="h5p-big-button h5p-copy-button"><div class="h5p-button-title">Copy content</div><div class="h5p-button-description">Copied content may be pasted anywhere this content type is supported on this website.</div></button>';
+    buttonCount += 1;
   }
 
   const dialog = new H5P.Dialog('reuse', H5P.t('reuseContent'), html, $element);
 
   // Selecting embed code when dialog is opened
   H5P.jQuery(dialog).on('dialog-opened', function (e, $dialog) {
+    const scrollContent = $dialog[0].querySelector('.h5p-scroll-content');
+    scrollContent.style.setProperty('--button-count', buttonCount);
     H5P.jQuery('<a href="https://h5p.org/node/442225" target="_blank">More Info</a>').click(function (e) {
       e.stopPropagation();
     }).appendTo($dialog.find('h2'));
@@ -1332,7 +1366,7 @@ H5P.openReuseDialog = function ($element, contentData, library, instance, conten
  */
 H5P.openEmbedDialog = function ($element, embedCode, resizeCode, size, instance) {
   var fullEmbedCode = embedCode + resizeCode;
-  var dialog = new H5P.Dialog('embed', H5P.t('embed'), '<textarea class="h5p-embed-code-container" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>' + H5P.t('size') + ': <input type="text" value="' + Math.ceil(size.width) + '" class="h5p-embed-size"/> × <input type="text" value="' + Math.ceil(size.height) + '" class="h5p-embed-size"/> px<br/><div role="button" tabindex="0" class="h5p-expander">' + H5P.t('showAdvanced') + '</div><div class="h5p-expander-content"><p>' + H5P.t('advancedHelp') + '</p><textarea class="h5p-embed-code-container" autocorrect="off" autocapitalize="off" spellcheck="false">' + resizeCode + '</textarea></div>', $element);
+  var dialog = new H5P.Dialog('embed', H5P.t('embed'), '<textarea class="h5p-embed-code-container" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>' + H5P.t('size') + ': <input aria-label="'+ H5P.t('width') +'" type="text" value="' + Math.ceil(size.width) + '" class="h5p-embed-size"/> × <input aria-label="'+ H5P.t('width') +'" type="text" value="' + Math.ceil(size.height) + '" class="h5p-embed-size"/> px<br/><div role="button" tabindex="0" class="h5p-expander">' + H5P.t('showAdvanced') + '</div><div class="h5p-expander-content"><p>' + H5P.t('advancedHelp') + '</p><textarea class="h5p-embed-code-container" autocorrect="off" autocapitalize="off" spellcheck="false">' + resizeCode + '</textarea></div>', $element);
 
   // Selecting embed code when dialog is opened
   H5P.jQuery(dialog).on('dialog-opened', function (event, $dialog) {
@@ -1877,8 +1911,10 @@ H5P.MediaCopyright = function (copyright, labels, order, extraFields) {
  * @param {string} source
  * @param {number} width
  * @param {number} height
+ * @param {string} alt
+ *  alternative text for the thumbnail
  */
-H5P.Thumbnail = function (source, width, height) {
+H5P.Thumbnail = function (source, width, height, alt) {
   var thumbWidth, thumbHeight = 100;
   if (width !== undefined) {
     thumbWidth = Math.round(thumbHeight * (width / height));
@@ -1890,7 +1926,7 @@ H5P.Thumbnail = function (source, width, height) {
    * @returns {string} HTML.
    */
   this.toString = function () {
-    return '<img src="' + source + '" alt="' + H5P.t('thumbnail') + '" class="h5p-thumbnail" height="' + thumbHeight + '"' + (thumbWidth === undefined ? '' : ' width="' + thumbWidth + '"') + '/>';
+    return '<img src="' + source + '" alt="' + (alt ? alt : '') + '" class="h5p-thumbnail" height="' + thumbHeight + '"' + (thumbWidth === undefined ? '' : ' width="' + thumbWidth + '"') + '/>';
   };
 };
 
@@ -2054,6 +2090,13 @@ H5P.libraryFromString = function (library) {
  *   The full path to the library.
  */
 H5P.getLibraryPath = function (library) {
+  if (H5PIntegration &&
+      H5PIntegration.libraryDirectories &&
+      library in H5PIntegration.libraryDirectories) {
+    // Use H5PIntegration.libraryDirectories if it exists for this library
+    library = H5PIntegration.libraryDirectories[library];
+  }
+
   if (H5PIntegration.urlLibraries !== undefined) {
     // This is an override for those implementations that has a different libraries URL, e.g. Moodle
     return H5PIntegration.urlLibraries + '/' + library;
@@ -2102,6 +2145,35 @@ H5P.trim = function (value) {
   // TODO: Only include this or String.trim(). What is best?
   // I'm leaning towards implementing the missing ones: http://kangax.github.io/compat-table/es5/
   // So should we make this function deprecated?
+};
+
+/**
+ * Recursive function that detects deep empty structures.
+ *
+ * @param {*} value
+ * @returns {bool}
+ */
+H5P.isEmpty = value => {
+  if (!value && value !== 0 && value !== false) {
+    return true; // undefined, null, NaN and empty strings.
+  }
+  else if (Array.isArray(value)) {
+    for (let i = 0; i < value.length; i++) {
+      if (!H5P.isEmpty(value[i])) {
+        return false; // Array contains a non-empty value
+      }
+    }
+    return true; // Empty array
+  }
+  else if (typeof value === 'object') {
+    for (let prop in value) {
+      if (value.hasOwnProperty(prop) && !H5P.isEmpty(value[prop])) {
+        return false; // Object contains a non-empty value
+      }
+    }
+    return true; // Empty object
+  }
+  return false;
 };
 
 /**
@@ -2657,15 +2729,18 @@ H5P.createTitle = function (rawTitle, maxLength) {
       if (!isTmpFile && clipboardData.contentId && !path.match(/^https?:\/\//i)) {
         // Comes from existing content
 
+        let prefix;
         if (H5PEditor.contentId) {
           // .. to existing content
-          return '../' + clipboardData.contentId + '/' + path;
+          prefix = '../' + clipboardData.contentId + '/';
         }
         else {
           // .. to new content
-          return (H5PEditor.contentRelUrl ? H5PEditor.contentRelUrl : '../content/') + clipboardData.contentId + '/' + path;
+          prefix = (H5PEditor.contentRelUrl ? H5PEditor.contentRelUrl : '../content/') + clipboardData.contentId + '/';
         }
+        return path.substr(0, prefix.length) === prefix ? path : prefix + path;
       }
+
       return path; // Will automatically be looked for in tmp folder
     });
 
