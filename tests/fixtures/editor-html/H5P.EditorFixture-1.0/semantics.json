@@ -1,0 +1,20 @@
+[
+  {
+    "name": "plain",
+    "type": "text",
+    "widget": "html",
+    "tags": ["p", "strong", "em", "a"]
+  },
+  {
+    "name": "group",
+    "type": "group",
+    "fields": [
+      {
+        "name": "table",
+        "type": "text",
+        "widget": "html",
+        "tags": ["p", "h2", "strong", "em", "a", "table", "tr", "td", "th"]
+      }
+    ]
+  }
+]

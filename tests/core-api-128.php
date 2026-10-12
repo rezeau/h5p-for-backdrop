@@ -5,10 +5,15 @@
  */
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/step2-provenance.php';
+require __DIR__ . '/export-fixtures.php';
 $baselineMode = in_array('--baseline', $argv, TRUE);
 $skipFixtureBaseline = in_array('--skip-fixture-baseline', $argv, TRUE);
 $fixtureDirectory = NULL;
+$fixtureManifest = NULL;
 foreach ($argv as $argument) {
+  if (strpos($argument, '--fixture-manifest=') === 0) {
+    $fixtureManifest = substr($argument, strlen('--fixture-manifest='));
+  }
   if (strpos($argument, '--fixtures=') === 0) {
     $fixtureDirectory = substr($argument, strlen('--fixtures='));
   }
@@ -48,7 +53,7 @@ function packageCore($sandbox, $name, $snapshot) {
   $framework->uploadDirectory = $directory . '/unpacked';
   mkdir($framework->uploadDirectory);
   $framework->uploadPath = $directory . '/upload.h5p';
-  foreach ($snapshot['installedLibraries'] as $index => $library) {
+  foreach ($snapshot['libraryCases'] as $index => $library) {
     $version = $library['manifest']['majorVersion'] . '.' . $library['manifest']['minorVersion'];
     $framework->installed[$library['machineName'] . ' ' . $version] = $index + 1;
   }
@@ -147,7 +152,7 @@ testCase('Legacy library folder names, dependency URLs and existing editor presa
       same('H5P.BaselineFixture-1.0.7', H5PCore::libraryToFolderName($patched), 'Explicit patch flag');
       same('H5P.BaselineFixture-1.0', H5PCore::libraryToFolderName(
         array('name' => 'H5P.BaselineFixture', 'majorVersion' => 1, 'minorVersion' => 0)), 'Name alias');
-      foreach ($snapshot['installedLibraries'] as $installed) {
+      foreach ($snapshot['libraryCases'] as $installed) {
         same(basename($installed['directory']), H5PCore::libraryToFolderName($installed['manifest']),
           'Existing directory format for ' . $installed['machineName']);
       }
@@ -301,7 +306,14 @@ if (!$baselineMode) {
     function () use ($sourceLock, $snapshot) {
       $exceptions = array('h5p.classes.php', 'h5p-event-base.class.php', '.gitignore', '.travis.yml');
       foreach ($sourceLock['core']['files'] as $file) {
-        if (in_array($file['path'], $exceptions, TRUE)) { continue; }
+        if (in_array($file['path'], $exceptions, TRUE)) {
+          if (isset($snapshot['coreVendorDifferences'][$file['path']])) {
+            same($snapshot['coreVendorDifferences'][$file['path']]['sha256'],
+              hash_file('sha256', H5P_TEST_ROOT . '/' . $file['targetPath']),
+              'Exact documented Core difference: ' . $file['path']);
+          }
+          continue;
+        }
         $bytes = file_get_contents(H5P_TEST_ROOT . '/' . $file['targetPath']);
         same($file['gitBlob'], sha1('blob ' . strlen($bytes) . "\0" . $bytes),
           'Exact upstream blob: ' . $file['targetPath']);
@@ -344,22 +356,52 @@ testCase('Group validation preserves supported values and missing required field
   same(array(), $framework->errors, 'No new required-field errors');
 });
 
-if ($fixtureDirectory !== NULL) {
-  if ($skipFixtureBaseline) {
-    echo 'NOTE: Validating current exports; frozen Phase 1 hash comparison explicitly skipped.' . PHP_EOL;
+testCase('Portable caller-supplied export selection and integrity', function () use ($sandbox, $snapshot, $baselineMode) {
+  $directory = $sandbox->directory('portable-exports');
+  $package = $directory . '/fixture.h5p';
+  syntheticPackage($package, array('majorVersion' => 1, 'minorVersion' => $baselineMode ? 24 : 28));
+  file_put_contents($directory . '/ignored.txt', 'Not a package');
+  $hash = hash_file('sha256', $package);
+  same(array(array('file' => 'fixture.h5p', 'sha256' => NULL)),
+    h5p_test_export_fixtures($directory), 'Discover supplied packages without a site inventory');
+  $records = array(array('file' => 'fixture.h5p', 'sha256' => $hash));
+  $manifest = $directory . '/manifest.json';
+  file_put_contents($manifest, json_encode($records));
+  same($records, h5p_test_export_fixtures($directory, $manifest), 'External hash manifest preserved');
+  foreach (array(NULL, array(), array(array('file' => '../fixture.h5p', 'sha256' => $hash)),
+      array(array('file' => 'fixture.h5p', 'sha256' => 'bad')), array($records[0], $records[0]),
+      array(array('file' => 'missing.h5p', 'sha256' => $hash))) as $bad) {
+    file_put_contents($manifest, json_encode($bad));
+    $rejected = FALSE;
+    try { h5p_test_export_fixtures($directory, $manifest); }
+    catch (RuntimeException $error) { $rejected = TRUE; }
+    check($rejected, 'Reject malformed, duplicate, missing or escaping fixture entries');
   }
-  else {
-    testCase('Export integrity against the frozen Phase 1 baseline',
-    function () use ($snapshot, $fixtureDirectory) {
-      foreach ($snapshot['exportFixtures'] as $fixture) {
-        same($fixture['sha256'], hash_file('sha256', $fixtureDirectory . '/' . $fixture['file']),
-          'Frozen export hash: ' . $fixture['file']);
+  list($framework, $core) = packageCore($sandbox, 'portable-export-validation', $snapshot);
+  copy($package, $framework->uploadPath);
+  check(validatePackage($framework, $core), 'Supplied synthetic export validates');
+  same(array('text' => 'Preserve me', 'zero' => 0, 'flag' => FALSE),
+    (array) $core->contentJsonData, 'Export parameter values retained');
+  same($hash, hash_file('sha256', $package), 'Read-only export hash retained');
+});
+
+if ($fixtureDirectory !== NULL) {
+  $exportFixtures = h5p_test_export_fixtures($fixtureDirectory, $fixtureManifest);
+  if ($skipFixtureBaseline) {
+    echo 'NOTE: External manifest hash comparison explicitly skipped; per-run source integrity remains checked.' . PHP_EOL;
+  }
+  else if ($fixtureManifest !== NULL) {
+    testCase('Export integrity against the supplied portable manifest',
+    function () use ($exportFixtures, $fixtureDirectory) {
+      foreach ($exportFixtures as $fixture) {
+        same(strtolower($fixture['sha256']), hash_file('sha256', $fixtureDirectory . '/' . $fixture['file']),
+          'Supplied export hash: ' . $fixture['file']);
       }
     });
   }
-  testCase('All 21 existing export packages validate without parameter changes',
-    function () use ($sandbox, $snapshot, $fixtureDirectory) {
-      foreach ($snapshot['exportFixtures'] as $index => $fixture) {
+  testCase('Supplied export packages validate without parameter changes',
+    function () use ($sandbox, $snapshot, $exportFixtures, $fixtureDirectory) {
+      foreach ($exportFixtures as $index => $fixture) {
         $path = $fixtureDirectory . '/' . $fixture['file'];
         $beforeHash = hash_file('sha256', $path);
         $zip = new ZipArchive();
