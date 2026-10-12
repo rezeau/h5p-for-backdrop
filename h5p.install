@@ -914,24 +914,6 @@ function h5p_requirements($phase) {
 }
 
 // TODO The old hook_update_N functions cannot be applied to Backdrop.
-function h5p_update_6100() { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function h5p_update_6101() { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function h5p_update_6102() { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function h5p_update_6103() { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function h5p_update_6104() { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
-function h5p_update_6105(&$sandbox) { }
-
-// TODO The old hook_update_N functions cannot be applied to Backdrop.
 function h5p_update_7100(&$sandbox) { }
 
 // TODO The old hook_update_N functions cannot be applied to Backdrop.

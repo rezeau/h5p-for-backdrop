@@ -1,0 +1,15 @@
+{
+    "scope": "Remove only six empty Drupal 6 update hooks; preserve all other installation and migration bytes",
+    "files": {
+        "h5p.install": {
+            "replacements": [
+                {
+                    "before": "// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_6100() { }\n\n// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_6101() { }\n\n// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_6102() { }\n\n// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_6103() { }\n\n// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_6104() { }\n\n// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_6105(&$sandbox) { }\n\n// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_7100(&$sandbox) { }",
+                    "after": "// TODO The old hook_update_N functions cannot be applied to Backdrop.\nfunction h5p_update_7100(&$sandbox) { }"
+                }
+            ],
+            "beforeSha256": "02da156b82e4f4663872c463bdb19af2d1201781461d012cbec01c980e595465",
+            "afterSha256": "2c2535e7532e24cffea4f41060857cac032b00737c405bd67421ced86f2e3a8b"
+        }
+    }
+}

@@ -6,6 +6,12 @@ The Backdrop adapters preserve existing content parameters, metadata and
 major/minor library directory names. No database schema migration or installed
 content-library upgrade is part of this change.
 
+The separate [schema update-hook correction](schema-update-hooks.md) removes six
+empty Drupal 6 declarations that caused persistent Backdrop update warnings.
+It changes update discovery and fresh-install bookkeeping without changing the
+schema or introducing a migration. Existing sites stored at `6105` still need
+the separately verified correction described there.
+
 ## Source provenance
 
 | Component | Upstream revision |
@@ -69,6 +75,8 @@ The exact reversible adapter spans remain in
 [content-metadata-patches.json](content-metadata-patches.json) and
 [node-cache-patches.json](node-cache-patches.json). These registers allow the
 tests to recover the public baseline without broadly excluding adapter files.
+The [schema hook register](schema-update-hooks-patches.json) similarly records
+the exact deletion from `h5p.install` and preserves all other installation bytes.
 
 See [tests/README.md](../../tests/README.md) for commands, coverage and optional
 caller-supplied export fixtures. Tests use memory-only database/configuration

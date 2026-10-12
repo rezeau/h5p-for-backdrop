@@ -18,13 +18,14 @@ node tests/editor-language-compatibility.cjs
 node tests/editor-runtime-compatibility.cjs
 ```
 
-The resizer and node-cache tests additionally read Backdrop source. Substitute
-an existing source checkout for the placeholder; neither test bootstraps its
+The resizer, node-cache and schema-update tests additionally read Backdrop source.
+Substitute an existing source checkout for the placeholder; none bootstraps its
 site, loads settings or connects to its database.
 
 ```sh
 php tests/resizer-language.php --backdrop-root=<Backdrop-source-root>
 php tests/node-cache.php --backdrop-root=<Backdrop-source-root>
+php -n tests/schema-update-hooks.php --backdrop-root=<Backdrop-source-root>
 ```
 
 Replace `php` with the selected version's executable as needed. PHP 7.4 and 8.4
@@ -48,6 +49,7 @@ is never saved. Unmasked PHP warnings and deprecations fail tests.
 | Editor assets | Ordered local resources, English/French UI and new/existing content |
 | Resizer language | Actual locale rewriting; unprefixed resizer and normal French prefixes |
 | Node cache | Actual Backdrop cache and Core filtering; targeted reset, revision IDs, warm playback/edit reuse and unrelated nodes |
+| Schema update hooks | Actual Backdrop discovery, fresh-install version selection, status comparisons and memory-only version storage; existing 6105/1000, genuine pending 7123, preserved removed-update boundary and exact installation-byte provenance |
 | JavaScript | Wrapper, nested languages, CKEditor configuration, rich-text preservation, summaries, initialization callback and asset closure |
 
 The runtime JavaScript suite uses the committed synthetic
@@ -60,6 +62,13 @@ The pinned wrapper's unsupported `.load(url)` behavior remains explicitly
 characterized; `.load(fn)` is covered as a working contract. These tests do not
 establish full browser behavior, HTML save round trips, live Hub registration,
 permissions or database migrations.
+
+The schema-update suite loads only installation/update API definitions and H5P
+installation definitions. It evaluates the actual fresh-install version-selection
+and status-comparison source blocks with memory-only collaborators. It never
+loads `update.php`, settings, vendors or a database driver, and never executes H5P
+update hooks. It verifies discovery and bookkeeping, not a live schema migration.
+See [the existing-site procedure](../docs/h5p-api-1.28/schema-update-hooks.md).
 
 ## Portable baseline and provenance
 
@@ -74,6 +83,9 @@ Editor files are rejected.
 registered in [the upgrade documentation](../docs/h5p-api-1.28/README.md) before
 public-baseline comparisons. Before/after hashes and unique replacement spans
 remain checked; no adapter file is generally excluded.
+The [schema hook register](../docs/h5p-api-1.28/schema-update-hooks-patches.json)
+reverses only the six empty Drupal 6 declarations before the original
+`h5p.install` hash comparison; every other installation byte stays protected.
 
 ## Optional export packages
 
